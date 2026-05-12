@@ -1204,7 +1204,7 @@ export default function Home() {
             
             <div className="space-y-12">
               {[
-                { icon: MapPin, label: "Adres", val: "ul. Morwowa 34", sub: "11-041 Olsztyn" },
+                { icon: MapPin, label: "Adres", val: "ul. Morwowa 34", sub: "11-041 Olsztyn", href: "https://www.google.com/maps/dir/?api=1&destination=AGA+MAX+Wasilewscy+Morwowa+34+11-041+Olsztyn" },
                 { icon: Phone, label: "Telefon", val: "+48 796 550 514", sub: "Umów wizytę teraz" },
                 { icon: Clock, label: "Godziny", val: "Pn - Pt: 09:00 - 18:00", sub: "Sobota: 09:00 - 15:00" }
               ].map((item, i) => (
@@ -1214,7 +1214,10 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.2 }}
                   className="flex gap-8 items-center group cursor-pointer"
-                  onClick={() => setContactModalOpen(true)}
+                  onClick={() => {
+                    if (item.href) window.open(item.href, '_blank');
+                    else setContactModalOpen(true);
+                  }}
                 >
                   <div className="w-16 h-16 glass-premium rounded-2xl flex items-center justify-center group-hover:bg-[#b71c1c] transition-all duration-500 shadow-xl shrink-0">
                     <item.icon className="w-7 h-7 text-[#b71c1c] group-hover:text-white transition-colors" />
@@ -1257,10 +1260,6 @@ export default function Home() {
             {/* Red top border line */}
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#b71c1c]/60 to-transparent" />
             {/* Info badge */}
-            <div className="absolute bottom-6 left-6 bg-black/80 backdrop-blur-md rounded-2xl px-6 py-4 border border-[#b71c1c]/30">
-              <p className="text-[#b71c1c] font-black text-[10px] uppercase tracking-[0.3em] mb-1">NASZA SIEDZIBA</p>
-              <p className="text-white/90 text-[10px] font-medium">ul. Morwowa 34 — 11-041 Olsztyn</p>
-            </div>
             {/* Direction button */}
             <a
               href="https://www.google.com/maps/dir/?api=1&destination=AGA+MAX+Wasilewscy+Morwowa+34+11-041+Olsztyn"
