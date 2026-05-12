@@ -274,7 +274,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
   const selectCar = (idx: number) => { setActiveCar(idx); setActivePhoto(0); };
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto flex flex-col gap-6 md:gap-10 pb-16" style={{ fontFamily: "var(--font-accent, var(--font-body))" }}>
+    <div className="w-full flex flex-col gap-6 md:gap-10 pb-16" style={{ fontFamily: "var(--font-accent, var(--font-body))" }}>
 
       {/* ── Thumbnails row with arrows ── */}
       <div className="relative px-6 md:px-12 lg:px-24">
@@ -334,7 +334,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.98 }}
           transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
-          className="mx-6 md:mx-12 lg:mx-24 xl:mx-auto xl:max-w-[1500px] bg-white/[0.04] border border-white/10 rounded-[36px] md:rounded-[48px] overflow-hidden shadow-2xl backdrop-blur-md"
+          className="mx-6 md:mx-12 lg:mx-24 2xl:mx-auto 2xl:max-w-[1800px] bg-white/[0.04] border border-white/10 rounded-[36px] md:rounded-[48px] overflow-hidden shadow-2xl backdrop-blur-md"
         >
           <div className="flex flex-col xl:flex-row">
 
@@ -921,7 +921,7 @@ export default function Home() {
                 <p className="text-[#b71c1c] font-black text-xs uppercase tracking-[0.4em]">EFEKTY NASZEJ PRACY</p>
                 <div className="flex-1 lg:hidden h-[1px] bg-white/5" />
               </div>
-              <h2 className="text-[40px] sm:text-[72px] md:text-[100px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] font-black uppercase tracking-tighter text-white leading-[0.85] break-words">
+              <h2 className="text-[40px] sm:text-[72px] md:text-[100px] lg:text-[110px] xl:text-[130px] 2xl:text-[150px] font-black uppercase tracking-tighter text-white leading-[0.85] break-words">
                 NASZE<br />
                 <span className="text-[#b71c1c] italic">REALIZACJE</span>
               </h2>
