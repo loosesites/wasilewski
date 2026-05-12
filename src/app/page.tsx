@@ -1194,7 +1194,7 @@ export default function Home() {
         <div className="px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-12 max-w-7xl mx-auto">
           <div className="flex flex-col items-center md:items-start gap-3">
              <Image
-               src={`${B}/logo.png`
+               src={`${B}/logo.png`}
                alt="AGA-MAX Wasilewscy"
                width={160}
                height={40}
