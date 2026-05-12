@@ -79,6 +79,17 @@ const PROJECT_DATA: Record<string, any> = {
   }
 };
 
+export function generateStaticParams() {
+    return [
+      { slug: 'korekta-lakieru' },
+      { slug: 'powloki-ceramiczne' },
+      { slug: 'serwis-premium' },
+      { slug: 'detailing-wnetrza' },
+      { slug: 'folie-ochronne' }
+        ];
+}
+
+
 export default function Realizacje({ params }: PageProps) {
   const [data, setData] = useState<any>(null);
   const [contactModalOpen, setContactModalOpen] = useState(false);
