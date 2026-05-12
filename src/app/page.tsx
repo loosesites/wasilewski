@@ -580,7 +580,6 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
   const [activeReview, setActiveReview] = useState(0);
   const [contactModalOpen, setContactModalOpen] = useState(false);
-  const lenisRef = useRef<Lenis | null>(null);
 
   const scrollToSection = (id: string) => {
     const target = document.querySelector(id);
