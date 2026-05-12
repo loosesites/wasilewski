@@ -1204,7 +1204,7 @@ export default function Home() {
             
             <div className="space-y-12">
               {[
-                { icon: MapPin, label: "Adres", val: "ul. Grunwaldzka 88", sub: "60-311 Poznań" },
+                { icon: MapPin, label: "Adres", val: "ul. Morwowa 34", sub: "11-041 Olsztyn" },
                 { icon: Phone, label: "Telefon", val: "+48 796 550 514", sub: "Umów wizytę teraz" },
                 { icon: Clock, label: "Godziny", val: "Pn - Pt: 09:00 - 18:00", sub: "Sobota: 09:00 - 15:00" }
               ].map((item, i) => (
@@ -1245,7 +1245,7 @@ export default function Home() {
             style={{ height: '560px' }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2434.946399838853!2d16.887695916110775!3d52.39769907981015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47045b500a5b1233%3A0x1c2e67bd5a97b97e!2sGrunwaldzka%2088%2C%2060-311%20Pozna%C5%84!5e0!3m2!1spl!2spl!4v1715000000000!5m2!1spl!2spl"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2360.7788481358!2d20.4439!3d53.7661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e2792610b88523%3A0xe7f9b8c0!2sMorwowa+34%2C+11-041+Olsztyn!5e0!3m2!1spl!2spl!4v1715000000000!5m2!1spl!2spl"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -1257,16 +1257,16 @@ export default function Home() {
             {/* Red top border line */}
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#b71c1c]/60 to-transparent" />
             {/* Info badge */}
-            <div className="absolute bottom-6 left-6 glass-premium rounded-2xl px-6 py-4 pointer-events-none border border-[#b71c1c]/20">
-
-              <p className="text-white/70 text-[10px] mt-1">ul. Grunwaldzka 88 — 60-311 Poznań</p>
+            <div className="absolute bottom-6 left-6 bg-black/80 backdrop-blur-md rounded-2xl px-6 py-4 border border-[#b71c1c]/30">
+              <p className="text-[#b71c1c] font-black text-[10px] uppercase tracking-[0.3em] mb-1">NASZA SIEDZIBA</p>
+              <p className="text-white/90 text-[10px] font-medium">ul. Morwowa 34 — 11-041 Olsztyn</p>
             </div>
             {/* Direction button */}
             <a
-              href="https://maps.google.com/?q=Grunwaldzka+88,+Poznan"
+              href="https://www.google.com/maps/dir/?api=1&destination=AGA+MAX+Wasilewscy+Morwowa+34+11-041+Olsztyn"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-6 right-6 bg-[#b71c1c] hover:bg-[#8b1115] transition-colors text-white font-black text-[9px] uppercase tracking-[0.3em] px-5 py-3 rounded-full flex items-center gap-2"
+              className="absolute bottom-6 right-6 bg-[#b71c1c] hover:bg-white hover:text-black transition-all duration-300 text-white font-black text-[9px] uppercase tracking-[0.3em] px-6 py-4 rounded-full flex items-center gap-2 shadow-[0_10px_30px_rgba(183,28,28,0.4)]"
             >
               NAWIGUJ <ChevronRight className="w-3 h-3" />
             </a>
