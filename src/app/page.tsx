@@ -28,7 +28,7 @@ import {
 
 import Link from "next/link";
 
-const B = "/wasilewski";
+const B = "";
 
 const REVIEWS = [
   { name: "Marcin K.", car: "BMW M4 Competition", text: "Samochód wygląda jak prosto z salonu. Prawdziwi profesjonaliści!" },
@@ -51,8 +51,8 @@ function Magnetic({ children }: { children: React.ReactElement }) {
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
-    x.set(middleX * 0.2);
-    y.set(middleY * 0.2);
+    x.set(middleX * 0.08);
+    y.set(middleY * 0.08);
   };
 
   const reset = () => {
@@ -350,7 +350,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
 
                 {/* Title */}
                 <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white leading-[1.1] mb-3">{car.name}</h3>
-                <p className="text-white/30 text-xs font-medium tracking-widest uppercase mb-8">{car.year} • AGA MAX Wasilewscy</p>
+                <p className="text-white/30 text-xs font-medium tracking-widest uppercase mb-8">{car.year}</p>
 
                 {/* Divider */}
                 <div className="w-full h-[1px] bg-gradient-to-r from-[#b71c1c]/60 to-transparent mb-8" />
@@ -495,6 +495,86 @@ function SimpleBeforeAfter({ beforeImg, afterImg }: { beforeImg: string, afterIm
   );
 }
 
+const StatsRow = ({ stat, i }: { stat: any, i: number }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: i * 0.05, ease: [0.23, 1, 0.32, 1] }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="border-b md:border-t md:border-b-0 border-white/5 cursor-default relative overflow-hidden"
+    >
+      {/* Layer 1: Base (Transparent) */}
+      <div className="absolute inset-0 bg-transparent z-0" />
+
+      {/* Layer 2: Red Slide (GPU Accelerated scaleX) */}
+      <motion.div 
+        initial={{ scaleX: 0, originX: 0 }}
+        animate={{ scaleX: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute inset-0 bg-[#b71c1c] z-10 will-change-transform"
+      />
+      
+      {/* Layer 3: Scanning Light Effect */}
+      <motion.div 
+        animate={{ x: isHovered ? "200%" : "-100%" }}
+        transition={{ duration: 1.2, ease: "linear", repeat: isHovered ? Infinity : 0 }}
+        className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 z-15 pointer-events-none" 
+      />
+
+      {/* Layer 4: Content */}
+      <div className="relative z-20 h-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24 flex flex-col md:flex-row md:items-center justify-between pointer-events-none">
+        <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-12 py-4 md:py-6">
+          {/* Parallax Number */}
+          <motion.div 
+            animate={{ 
+              x: isHovered ? -8 : 0,
+              scale: isHovered ? 1.03 : 1
+            }}
+            transition={{ duration: 0.4 }}
+            className="text-[40px] sm:text-[56px] md:text-[100px] lg:text-[130px] font-black text-white tracking-tighter leading-none will-change-transform"
+          >
+            {stat.num}
+          </motion.div>
+          
+          {/* Sliding Content */}
+          <motion.div 
+            animate={{ x: isHovered ? 15 : 0 }}
+            transition={{ duration: 0.4 }}
+            className="block mt-1 sm:mt-0"
+          >
+            <p className="text-white font-black uppercase tracking-[0.1em] text-sm md:text-3xl leading-tight">
+              {stat.label}
+            </p>
+            <p className="text-gray-300 leading-relaxed text-[10px] md:text-sm font-medium mt-1 transition-colors duration-300" style={{ color: isHovered ? 'white' : 'rgba(209,213,219,1)' }}>
+              {stat.sub}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Index & Line Animation */}
+        <div className="hidden md:flex items-center gap-4 shrink-0">
+          <motion.span 
+            animate={{ opacity: isHovered ? 0.5 : 0.1 }}
+            className="hidden lg:block font-black text-xs tracking-widest text-white"
+          >
+            {stat.idx}
+          </motion.span>
+          <motion.div 
+            animate={{ width: isHovered ? 80 : 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="hidden md:block h-[1px] bg-white/30" 
+          />
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -507,9 +587,8 @@ export default function Home() {
     return () => clearInterval(t);
   }, []);
 
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const opacityHero = useTransform(scrollY, [0, 300], [1, 0]);
 
   useEffect(() => {
     let lenis: Lenis | null = null;
@@ -536,9 +615,9 @@ export default function Home() {
     }
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
+      setScrolled(window.scrollY > 50);
       
-      const sections = ['about', 'services', 'pricing', 'realizations', 'contact'];
+      const sections = ['realizations', 'services', 'about', 'contact'];
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -562,128 +641,132 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#b71c1c] selection:text-white font-sans">
       
-      {/* Global Scroll Progress */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-[#b71c1c] origin-left z-[100] drop-shadow-[0_0_10px_rgba(183,28,28,0.8)]"
-        style={{ scaleX: scrollYProgress }}
-      />
-
-      {/* Modern Floating Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50">
-        <div className={`mx-5 sm:mx-8 lg:mx-16 mt-6 md:mt-4 flex justify-between items-center px-6 md:px-12 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+      {/* Modern Floating Centered Navbar */}
+      <motion.nav 
+        initial={{ y: -100, opacity: 0, scale: 0.8 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1], delay: 0.5 }}
+        className="fixed top-0 left-0 right-0 z-[100] flex justify-center pt-8 transition-all duration-500"
+      >
+        <div className={`flex items-center gap-6 md:gap-10 px-8 md:px-12 py-4 md:py-5 rounded-full transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
           scrolled
-            ? 'bg-black/50 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-20 rounded-full'
-            : 'bg-transparent border border-transparent shadow-none h-24 rounded-full'
+            ? 'bg-black/70 backdrop-blur-3xl border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.6)] scale-95 md:scale-100'
+            : 'bg-white/[0.04] backdrop-blur-xl border border-white/10 scale-105 md:scale-100'
         }`}>
-          {/* Logo Section */}
-          <div className="flex items-center cursor-pointer group">
-            <Image
-              src={`${B}/logo.png`}
-              alt="AGA-MAX Wasilewscy"
-              width={180}
-              height={44}
-              className="h-9 md:h-11 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 group-hover:brightness-125 transition-all duration-500 group-hover:scale-105"
-              priority
-            />
-          </div>
+          {/* Logo */}
+          <Magnetic>
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="flex items-center cursor-pointer group"
+            >
+              <Image
+                src={`${B}/logo.png`}
+                alt="AGA-MAX"
+                width={140}
+                height={35}
+                className="h-8 md:h-9 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transition-all duration-500"
+                priority
+              />
+            </motion.div>
+          </Magnetic>
           
-          {/* Links */}
-          <div className="hidden lg:flex items-center gap-12 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300 leading-relaxed">
+          <div className="w-[1px] h-6 bg-white/10 hidden md:block" />
+
+          {/* Main Links */}
+          <div className="hidden md:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.35em] text-gray-400">
             {[
-              { name: 'O nas', href: '#about' },
-              { name: 'Usługi', href: '#services' },
               { name: 'Realizacje', href: '#realizations' },
+              { name: 'Usługi', href: '#services' },
+              { name: 'O nas', href: '#about' },
               { name: 'Kontakt', href: '#contact' }
-            ].map((item) => (
-              <motion.a 
-                key={item.name}
-                href={item.href} 
-                className={`relative group py-2 transition-all duration-300 ${activeSection === item.href.substring(1) ? 'text-white' : 'hover:text-white'}`}
-                whileHover="hover"
-              >
-                <span>{item.name}</span>
-                <motion.span 
-                  className={`absolute -bottom-1 left-0 w-full h-[2px] bg-[#b71c1c] origin-left rounded-full ${activeSection === item.href.substring(1) ? 'scale-x-100' : 'scale-x-0'}`}
-                  variants={{ hover: { scaleX: 1 } }}
-                  transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                />
-              </motion.a>
+            ].map((item, i) => (
+              <Magnetic key={item.name}>
+                <motion.a 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.2 + i * 0.1 }}
+                  href={item.href} 
+                  className={`relative py-2 group transition-all duration-300 ${activeSection === item.href.substring(1) ? 'text-white' : 'hover:text-white'}`}
+                >
+                  <span>{item.name}</span>
+                  {/* Refined Active Indicator */}
+                  <motion.span 
+                    initial={false}
+                    animate={activeSection === item.href.substring(1) ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#b71c1c] rounded-full shadow-[0_0_10px_#b71c1c]"
+                  />
+                  {/* Hover Line */}
+                  <span className={`absolute -bottom-1 left-0 w-full h-[2px] bg-[#b71c1c] origin-left rounded-full transition-transform duration-500 ${activeSection === item.href.substring(1) ? 'scale-x-0' : 'scale-x-0 group-hover:scale-x-100'}`} />
+                </motion.a>
+              </Magnetic>
             ))}
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-4">
-            {/* Contact Button */}
-            <Magnetic>
-              <motion.button 
-                onClick={() => setContactModalOpen(true)}
-                whileHover={{ scale: 1.05, backgroundColor: "#8b1115" }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#b71c1c] w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all shadow-[0_0_20px_rgba(183,28,28,0.3)] hover:shadow-[0_0_30px_rgba(183,28,28,0.5)] hidden md:flex"
-              >
-                <Phone className="w-5 h-5 md:w-6 md:h-6 text-white" strokeWidth={1.5} />
-              </motion.button>
-            </Magnetic>
-            
-            {/* Mobile Menu Toggle */}
-            <button 
-              className="lg:hidden w-12 h-12 flex items-center justify-center glass-premium rounded-xl relative overflow-hidden group"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle Menu"
+          <div className="w-[1px] h-6 bg-white/10 hidden md:block" />
+
+          {/* Action Button */}
+          <Magnetic>
+            <motion.button 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 1.6 }}
+              onClick={() => setContactModalOpen(true)}
+              className="flex items-center gap-3 bg-[#b71c1c] hover:bg-[#8b1115] px-6 py-3 md:px-8 md:py-4 rounded-full transition-all duration-300 shadow-xl shadow-[#b71c1c]/20 group/btn overflow-hidden relative"
             >
-              <div className="flex flex-col gap-1.5 items-center justify-center">
-                <motion.span 
-                  animate={mobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                  className="w-6 h-[2px] bg-white block origin-center"
-                />
-                <motion.span 
-                  animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                  className="w-6 h-[2px] bg-white block"
-                />
-                <motion.span 
-                  animate={mobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                  className="w-6 h-[2px] bg-white block origin-center"
-                />
-              </div>
-            </button>
-          </div>
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
+              <Phone className="w-4 h-4 text-white relative z-10" />
+              <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-white relative z-10 hidden sm:inline">Umów wizytę</span>
+            </motion.button>
+          </Magnetic>
+          
+          {/* Mobile Menu Toggle */}
+          <motion.button 
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 1.8 }}
+            className="md:hidden w-10 h-10 flex items-center justify-center relative bg-white/5 rounded-full border border-white/10"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <div className="flex flex-col gap-1.5 items-center justify-center">
+              <motion.span animate={mobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} className="w-6 h-[1.5px] bg-white" />
+              <motion.span animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }} className="w-6 h-[1.5px] bg-white" />
+              <motion.span animate={mobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} className="w-6 h-[1.5px] bg-white" />
+            </div>
+          </motion.button>
         </div>
 
         {/* Mobile Menu Overlay */}
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden absolute top-full left-0 right-0 mt-4 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl mx-5 sm:mx-8"
-          >
-            <div className="flex flex-col gap-6 text-center">
-              {[
-                { name: 'O nas', href: '#about' },
-                { name: 'Usługi', href: '#services' },
-                { name: 'Realizacje', href: '#realizations' },
-                { name: 'Kontakt', href: '#contact' }
-              ].map((item) => (
-                <a 
-                  key={item.name}
-                  href={item.href} 
-                  className="text-xs font-bold uppercase tracking-[0.25em] text-white"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <div className="h-[1px] bg-white/10 w-full my-4"></div>
-              <button 
-                className="text-[#b71c1c] text-xs font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2" 
-                onClick={() => { setMobileMenuOpen(false); setContactModalOpen(true); }}
-              >
-                <Phone className="w-4 h-4" /> Skontaktuj się
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </nav>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.9 }}
+              className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[calc(100%-48px)] max-w-sm bg-[#0a0a0a]/98 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] p-10 shadow-2xl z-[110]"
+            >
+              <div className="flex flex-col gap-8 text-center">
+                {[
+                  { name: 'Realizacje', href: '#realizations' },
+                  { name: 'Usługi', href: '#services' },
+                  { name: 'O nas', href: '#about' },
+                  { name: 'Kontakt', href: '#contact' }
+                ].map((item) => (
+                  <a 
+                    key={item.name}
+                    href={item.href} 
+                    className="text-sm font-black uppercase tracking-[0.3em] text-white py-2 hover:text-[#b71c1c] transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-[100svh] flex items-center pt-20 bg-[#0a0a0a] overflow-hidden perspective-3d">
@@ -709,9 +792,9 @@ export default function Home() {
         <div className="relative z-10 px-6 md:px-12 lg:px-24 max-w-7xl w-full flex flex-col justify-center h-full preserve-3d">
           
           <motion.div 
-            initial={{ opacity: 0, y: 100, rotateX: 20 }}
-            animate={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
+            initial={{ opacity: 0, y: 50, filter: "blur(15px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
             className="max-w-5xl mt-4 md:mt-10"
           >
             <h1 className="text-[38px] sm:text-6xl md:text-[80px] lg:text-[96px] xl:text-[110px] font-black mb-6 leading-[0.9] tracking-tighter text-white drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
@@ -719,11 +802,21 @@ export default function Home() {
               <span className="text-[#b71c1c] italic drop-shadow-[0_0_20px_rgba(183,28,28,0.4)]">BEZ KOMPROMISÓW</span>
             </h1>
             
-            <p className="text-gray-300 leading-relaxed text-base md:text-lg max-w-md mb-8 leading-relaxed font-medium">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="text-gray-300 leading-relaxed text-base md:text-lg max-w-md mb-8 leading-relaxed font-medium"
+            >
               Ekskluzywny detailing i zaawansowana technologia, która przywraca Twojemu autu salonowy blask.
-            </p>
+            </motion.p>
 
-            <div className="w-max mb-10 md:mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="w-max mb-10 md:mb-16"
+            >
               <Magnetic>
                 <motion.button 
                   whileHover={{ scale: 1.05, backgroundColor: "#8b1115", x: 10 }}
@@ -735,14 +828,14 @@ export default function Home() {
                   <div className="absolute inset-0 bg-white/10 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-out z-0" />
                 </motion.button>
               </Magnetic>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Hero Features - Antigravity Glass Capsules */}
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 pb-10 w-full"
           >
             {[
@@ -752,6 +845,9 @@ export default function Home() {
             ].map((feat, i) => (
               <motion.div 
                 key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.4 + i * 0.1 }}
                 whileHover={{ y: -10, scale: 1.02 }}
                 className="glass-premium px-8 py-6 rounded-3xl flex items-center gap-6 group/feat cursor-default floating"
                 style={{ animationDelay: `${i * 0.5}s` }}
@@ -781,37 +877,15 @@ export default function Home() {
             <div className="flex-1 h-[1px] bg-white/5" />
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-1">
-        {[
-          { num: "12+", label: "Lat Doświadczenia", sub: "W branży detailingu i zabezpieczeń", idx: "01" },
-          { num: "150+", label: "Projektów Premium", sub: "Zrealizowanych z precyzją chirurga", idx: "02" },
-          { num: "980+", label: "Zadowolonych Klientów", sub: "Którzy regularnie do nas wracają", idx: "03" },
-          { num: "98%", label: "Satysfakcji", sub: "Potwierdzonej przez każdego klienta", idx: "04" },
-        ].map((stat, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: i * 0.1, ease: [0.23, 1, 0.32, 1] }}
-            className="border-b md:border-t md:border-b-0 border-white/5 odd:border-r md:odd:border-r-0 group cursor-default relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-[#b71c1c] -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" />
-            <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24 py-8 md:py-6 flex flex-col md:flex-row md:items-center justify-between">
-              <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-12">
-                <span className="text-[40px] sm:text-[56px] md:text-[100px] lg:text-[130px] font-black text-white tracking-tighter leading-none will-change-transform">{stat.num}</span>
-                <div className="block mt-1 sm:mt-0">
-                  <p className="text-white font-black uppercase tracking-[0.1em] text-sm md:text-3xl leading-tight">{stat.label}</p>
-                  <p className="text-gray-300 leading-relaxed group-hover:text-white/60 text-[10px] md:text-sm font-medium mt-1 transition-colors duration-300 line-clamp-2 md:line-clamp-none">{stat.sub}</p>
-                </div>
-              </div>
-              <div className="hidden md:flex items-center gap-4 shrink-0">
-                <span className="hidden lg:block text-white/10 font-black text-xs tracking-widest">{stat.idx}</span>
-                <div className="hidden md:block w-0 h-[1px] bg-white/30 group-hover:w-24 transition-all duration-500" />
-              </div>
-            </div>
-          </motion.div>
-        ))}
+        <div className="flex flex-col">
+          {[
+            { num: "12+", label: "Lat Doświadczenia", sub: "W branży detailingu i zabezpieczeń", idx: "01" },
+            { num: "150+", label: "Projektów Premium", sub: "Zrealizowanych z precyzją chirurga", idx: "02" },
+            { num: "980+", label: "Zadowolonych Klientów", sub: "Którzy regularnie do nas wracają", idx: "03" },
+            { num: "98%", label: "Satysfakcji", sub: "Potwierdzonej przez każdego klienta", idx: "04" }
+          ].map((stat, i) => (
+            <StatsRow key={i} stat={stat} i={i} />
+          ))}
         </div>
         <div className="hidden md:block border-t border-white/5" />
       </section>
@@ -1118,7 +1192,7 @@ export default function Home() {
             <div className="space-y-12">
               {[
                 { icon: MapPin, label: "Adres", val: "ul. Grunwaldzka 88", sub: "60-311 Poznań" },
-                { icon: Phone, label: "Telefon", val: "+48 661 234 567", sub: "Umów wizytę teraz" },
+                { icon: Phone, label: "Telefon", val: "+48 796 550 514", sub: "Umów wizytę teraz" },
                 { icon: Clock, label: "Godziny", val: "Pn - Pt: 09:00 - 18:00", sub: "Sobota: 09:00 - 15:00" }
               ].map((item, i) => (
                 <motion.div 
@@ -1171,7 +1245,7 @@ export default function Home() {
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#b71c1c]/60 to-transparent" />
             {/* Info badge */}
             <div className="absolute bottom-6 left-6 glass-premium rounded-2xl px-6 py-4 pointer-events-none border border-[#b71c1c]/20">
-              <p className="text-white font-black text-xs uppercase tracking-[0.3em]">AGA MAX Wasilewscy</p>
+
               <p className="text-white/70 text-[10px] mt-1">ul. Grunwaldzka 88 — 60-311 Poznań</p>
             </div>
             {/* Direction button */}
@@ -1207,10 +1281,7 @@ export default function Home() {
              <a href="#" className="hover:text-[#b71c1c] transition-colors">TikTok</a>
           </div>
 
-          <div className="text-center md:text-right">
-             <p className="text-[#b71c1c] font-black italic text-sm tracking-widest">Antigravity Design</p>
-             <p className="text-[8px] text-gray-700 uppercase mt-1">Advanced Agentic Coding</p>
-          </div>
+
         </div>
       </footer>
 
