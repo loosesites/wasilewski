@@ -28,6 +28,8 @@ import {
 
 import Link from "next/link";
 
+const B = "/wasilewski";
+
 const REVIEWS = [
   { name: "Marcin K.", car: "BMW M4 Competition", text: "Samochód wygląda jak prosto z salonu. Prawdziwi profesjonaliści!" },
   { name: "Tomasz W.", car: "Porsche 911 Carrera", text: "Powłoka ceramiczna perfekcyjna. Polecam każdemu właścicielowi premium auta." },
@@ -73,7 +75,7 @@ function Magnetic({ children }: { children: React.ReactElement }) {
 function GalleryGrid() {
   const items = [
     {
-      src: "/gallery_bg.png",
+      src: `${B}/gallery_bg.png`,
       cat: "DETAILING",
       title: "Korekta Lakieru",
       num: "01",
@@ -81,7 +83,7 @@ function GalleryGrid() {
       cls: "col-span-2 md:col-span-7 h-[220px] sm:h-[300px] md:h-[480px]",
     },
     {
-      src: "/gallery_ceramic.png",
+      src: `${B}/gallery_ceramic.png`,
       cat: "CERAMIKA",
       title: "Powłoki Ceramiczne",
       num: "02",
@@ -89,7 +91,7 @@ function GalleryGrid() {
       cls: "col-span-2 md:col-span-5 h-[220px] sm:h-[300px] md:h-[480px]",
     },
     {
-      src: "/hero.png",
+      src: `${B}/hero.png`,
       cat: "MECHANIKA",
       title: "Serwis Premium",
       num: "03",
@@ -97,7 +99,7 @@ function GalleryGrid() {
       cls: "col-span-1 md:col-span-4 h-[220px] sm:h-[260px] md:h-[380px]",
     },
     {
-      src: "/gallery_interior.png",
+      src: `${B}/gallery_interior.png`,
       cat: "WNĘTRZE",
       title: "Detailing Wnętrza",
       num: "04",
@@ -105,7 +107,7 @@ function GalleryGrid() {
       cls: "col-span-1 md:col-span-4 h-[220px] sm:h-[260px] md:h-[380px]",
     },
     {
-      src: "/about.png",
+      src: `${B}/about.png`,
       cat: "PPF",
       title: "Folie Ochronne",
       num: "05",
@@ -193,8 +195,8 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
       desc: "Wieloetapowa korekta lakieru z aplikacją 5-letniej powłoki ceramicznej na lakier, felgi oraz plastiki zewnętrzne. Auto zyskało niesamowitą głębię i szklistość lustrzanego odbicia.",
       services: ["Korekta lakieru II-stopniowa", "Powłoka ceramiczna 5Y", "Zabezpieczenie felg", "Impregnat szyb"],
       photos: ["/hero.png", "/gallery_bg.png", "/gallery_ceramic.png"],
-      beforeImg: "/gallery_ceramic.png",
-      afterImg: "/hero.png",
+      beforeImg: `${B}/gallery_ceramic.png",
+      afterImg: `${B}/hero.png",
     },
     {
       id: "porsche",
@@ -205,8 +207,8 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
       desc: "Zabezpieczenie całego frontu, lamp, lusterek oraz newralgicznych punktów lakieru folią PPF. Kompleksowy detailing wnętrza wraz z bezinwazyjną impregnacją skór Alcantara.",
       services: ["PPF Full Front", "PPF Lusterka + Lampy", "Detailing wnętrza", "Impregnacja Alcantara"],
       photos: ["/gallery_bg.png", "/hero.png", "/about.png"],
-      beforeImg: "/about.png",
-      afterImg: "/gallery_bg.png",
+      beforeImg: `${B}/about.png",
+      afterImg: `${B}/gallery_bg.png",
     },
     {
       id: "mercedes",
@@ -217,8 +219,8 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
       desc: "Pranie ekstrakcyjne całego wnętrza, ozonowanie systemu wentylacji oraz wieloetapowa regeneracja luksusowej skórzanej tapicerki i drewnianych dekorów kokpitu.",
       services: ["Pranie ekstrakcyjne", "Ozonowanie wnętrza", "Regeneracja skóry", "Renowacja dekorów"],
       photos: ["/gallery_interior.png", "/gallery_bg.png", "/hero.png"],
-      beforeImg: "/gallery_interior.png",
-      afterImg: "/gallery_interior.png",
+      beforeImg: `${B}/gallery_interior.png",
+      afterImg: `${B}/gallery_interior.png",
     },
     {
       id: "audi",
@@ -229,8 +231,8 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
       desc: "Trzyetapowa korekta lakieru z usunięciem 95% zarysowań i pająków. Finalnie aplikacja rocznej powłoki ceramicznej oraz kompleksowy detailing wnętrza i bagażnika.",
       services: ["Korekta III-stopniowa", "Usuwanie zarysowań", "Powłoka ceramiczna 1Y", "Detailing full"],
       photos: ["/gallery_ceramic.png", "/gallery_interior.png", "/gallery_bg.png"],
-      beforeImg: "/gallery_ceramic.png",
-      afterImg: "/gallery_interior.png",
+      beforeImg: `${B}/gallery_ceramic.png",
+      afterImg: `${B}/gallery_interior.png",
     },
     {
       id: "lamborghini",
@@ -241,8 +243,8 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
       desc: "Prestiżowe zabezpieczenie całej karoserii folią PPF najwyższej klasy z efektem self-healing. Projekt realizowany przez ponad 5 dni pracy z najwyższą precyzją.",
       services: ["PPF Full Body", "Self-healing PPF", "Montaż bez krawędziowy", "Certyfikat gwarancji"],
       photos: ["/hero.png", "/gallery_bg.png", "/about.png"],
-      beforeImg: "/about.png",
-      afterImg: "/hero.png",
+      beforeImg: `${B}/about.png",
+      afterImg: `${B}/hero.png",
     },
     {
       id: "tesla",
@@ -253,8 +255,8 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
       desc: "Kompleksowy pakiet ochrony — PPF na newralgicznych punktach, powłoka ceramiczna na pozostałym lakierze oraz specjalistyczne zabezpieczenie matrycy i ekranu dotykowego.",
       services: ["PPF punktowy", "Ceramika na lakier", "Ochrona ekranów", "Zabezpieczenie ładowarki"],
       photos: ["/gallery_interior.png", "/hero.png", "/gallery_ceramic.png"],
-      beforeImg: "/gallery_interior.png",
-      afterImg: "/gallery_ceramic.png",
+      beforeImg: `${B}/gallery_interior.png",
+      afterImg: `${B}/gallery_ceramic.png",
     },
   ];
 
@@ -576,7 +578,7 @@ export default function Home() {
           {/* Logo Section */}
           <div className="flex items-center cursor-pointer group">
             <Image
-              src="/logo.png"
+              src={`${B}/logo.png`}
               alt="AGA-MAX Wasilewscy"
               width={180}
               height={44}
@@ -695,7 +697,7 @@ export default function Home() {
           className="absolute top-0 right-0 w-full md:w-[70%] h-[120%] z-0 overflow-hidden max-md:[clip-path:none] md:[clip-path:polygon(15%_0,100%_0,100%_100%,0%_100%)] will-change-transform"
         >
           <Image 
-            src="/hero.png" 
+            src={`${B}/hero.png" 
             alt="Hero BMW" 
             fill 
             sizes="(max-width: 768px) 100vw, 70vw"
@@ -993,7 +995,7 @@ export default function Home() {
             {/* Diagonal clip matching gallery motif */}
             <div className="absolute inset-0 [clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]">
               <Image
-                src="/about.png"
+                src={`${B}/about.png"
                 alt="AGA MAX Warsztat"
                 fill
                 sizes="50vw"
@@ -1192,7 +1194,7 @@ export default function Home() {
         <div className="px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-12 max-w-7xl mx-auto">
           <div className="flex flex-col items-center md:items-start gap-3">
              <Image
-               src="/logo.png"
+               src={`${B}/logo.png"
                alt="AGA-MAX Wasilewscy"
                width={160}
                height={40}
