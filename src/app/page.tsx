@@ -274,7 +274,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
   const selectCar = (idx: number) => { setActiveCar(idx); setActivePhoto(0); };
 
   return (
-    <div className="w-full flex flex-col gap-10 pb-16" style={{ fontFamily: "var(--font-accent, var(--font-body))" }}>
+    <div className="w-full max-w-[1600px] mx-auto flex flex-col gap-6 md:gap-10 pb-16" style={{ fontFamily: "var(--font-accent, var(--font-body))" }}>
 
       {/* ── Thumbnails row with arrows ── */}
       <div className="relative px-6 md:px-12 lg:px-24">
@@ -334,7 +334,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.98 }}
           transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
-          className="mx-6 md:mx-12 lg:mx-24 bg-white/[0.04] border border-white/10 rounded-[36px] md:rounded-[48px] overflow-hidden shadow-2xl backdrop-blur-md"
+          className="mx-6 md:mx-12 lg:mx-24 xl:mx-auto xl:max-w-[1500px] bg-white/[0.04] border border-white/10 rounded-[36px] md:rounded-[48px] overflow-hidden shadow-2xl backdrop-blur-md"
         >
           <div className="flex flex-col xl:flex-row">
 
@@ -397,7 +397,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
             <div className="flex-1 flex flex-col">
 
               {/* Multi-photo viewer */}
-              <div className="relative aspect-video overflow-hidden bg-black">
+              <div className="relative aspect-video xl:aspect-[16/8] overflow-hidden bg-black">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`${activeCar}-${activePhoto}`}
@@ -468,7 +468,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
 function SimpleBeforeAfter({ beforeImg, afterImg }: { beforeImg: string, afterImg: string }) {
   const [pos, setPos] = useState(50);
   return (
-    <div className="relative w-full aspect-[21/8] md:aspect-[21/7] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-black shadow-2xl cursor-ew-resize">
+    <div className="relative w-full aspect-[21/9] md:aspect-[21/7] xl:aspect-[21/6] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-black shadow-2xl cursor-ew-resize">
       <input type="range" min="0" max="100" step="0.1" value={pos} onChange={e => setPos(parseFloat(e.target.value))} className="absolute inset-0 w-full h-full opacity-0 z-30 m-0 p-0 cursor-ew-resize" />
       {/* After image (right side) */}
       <Image src={afterImg} alt="Po" fill className="object-cover pointer-events-none" />
@@ -921,7 +921,7 @@ export default function Home() {
                 <p className="text-[#b71c1c] font-black text-xs uppercase tracking-[0.4em]">EFEKTY NASZEJ PRACY</p>
                 <div className="flex-1 lg:hidden h-[1px] bg-white/5" />
               </div>
-              <h2 className="text-[40px] sm:text-[72px] md:text-[110px] lg:text-[140px] font-black uppercase tracking-tighter text-white leading-[0.85] break-words">
+              <h2 className="text-[40px] sm:text-[72px] md:text-[100px] lg:text-[120px] xl:text-[140px] 2xl:text-[160px] font-black uppercase tracking-tighter text-white leading-[0.85] break-words">
                 NASZE<br />
                 <span className="text-[#b71c1c] italic">REALIZACJE</span>
               </h2>
