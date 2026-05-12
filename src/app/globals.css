@@ -1,26 +1,329 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   AGA MAX — Premium Design System v2.0
+/* Vertical Waves — 3 distinct seamless sine waves flowing downwards */
+@keyframes wave-flow {
+  0% { background-position: center 0px; }
+  100% { background-position: center 1500px; }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.vertical-waves {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='1500' viewBox='0 0 1440 1500'%3E%3Cpath stroke='%23b71c1c' stroke-width='1.5' fill='none' opacity='0.35'%3E%3Canimate attributeName='d' dur='25s' repeatCount='indefinite' values='M100,0 Q20,187.5 100,375 T100,750 T100,1125 T100,1500; M100,0 Q80,187.5 100,375 T100,750 T100,1125 T100,1500; M100,0 Q-40,187.5 100,375 T100,750 T100,1125 T100,1500; M100,0 Q20,187.5 100,375 T100,750 T100,1125 T100,1500' /%3E%3C/path%3E%3Cpath stroke='%23b71c1c' stroke-width='1.5' fill='none' opacity='0.12'%3E%3Canimate attributeName='d' dur='35s' repeatCount='indefinite' values='M720,0 Q800,187.5 720,375 T720,750 T720,1125 T720,1500; M720,0 Q640,187.5 720,375 T720,750 T720,1125 T720,1500; M720,0 Q860,187.5 720,375 T720,750 T720,1125 T720,1500; M720,0 Q800,187.5 720,375 T720,750 T720,1125 T720,1500' /%3E%3C/path%3E%3Cpath stroke='%23b71c1c' stroke-width='1.5' fill='none' opacity='0.35'%3E%3Canimate attributeName='d' dur='30s' repeatCount='indefinite' values='M1340,0 Q1420,187.5 1340,375 T1340,750 T1340,1125 T1340,1500; M1340,0 Q1260,187.5 1340,375 T1340,750 T1340,1125 T1340,1500; M1340,0 Q1480,187.5 1340,375 T1340,750 T1340,1125 T1340,1500; M1340,0 Q1420,187.5 1340,375 T1340,750 T1340,1125 T1340,1500' /%3E%3C/path%3E%3C/svg%3E");
+  background-size: 100% 1500px;
+  background-position: center 0px;
+  background-repeat: repeat-y;
+  animation: wave-flow 120s linear infinite;
+  mask-image: linear-gradient(to bottom, black 0%, black 20%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 20%, transparent 100%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (max-width: 768px) {
+  .vertical-waves {
+    opacity: 0.8;
+    background-size: 100% 750px;
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
   }
+}
+
+/* Red horizontal section divider */
+.red-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #b71c1c 30%, #b71c1c 70%, transparent);
+  opacity: 0.35;
+}
+
+/* Dashed red ticker — decorative horizontal line with dashes */
+.red-ticker {
+  width: 100%;
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #b71c1c 0px, #b71c1c 20px,
+    transparent 20px, transparent 40px
+  );
+  opacity: 0.25;
+}
+
+
+@theme {
+  --color-red: #b71c1c;
+  --color-red-deep: #8b1115;
+  --color-red-glow: rgba(183, 28, 28, 0.4);
+  --color-surface: #111111;
+  --color-dark: #0a0a0a;
+  --color-dark-lighter: #161616;
+  --font-display: var(--font-display), 'Unbounded', sans-serif;
+  --font-body: var(--font-body), 'Outfit', sans-serif;
+  --font-sans: var(--font-body), 'Outfit', sans-serif;
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --red: #b71c1c;
+  --red-glow: rgba(183, 28, 28, 0.4);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Typography Scale */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Selection */
+::selection {
+  background: #b71c1c;
+  color: #fff;
+}
+
+/* ============================================================
+   GLASSMORPHISM
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-premium {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================================
+   3D / PERSPECTIVE
+   ============================================================ */
+.perspective-3d {
+  perspective: 1500px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* ============================================================
+   ANIMATIONS — design-spells
+   ============================================================ */
+
+/* Float - hero capsules */
+@keyframes float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-4px) rotate(0.2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+.floating {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Grain texture overlay */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0) }
+  10%       { transform: translate(-2%, -3%) }
+  20%       { transform: translate(2%, 1%) }
+  30%       { transform: translate(-1%, 3%) }
+  40%       { transform: translate(3%, -1%) }
+  50%       { transform: translate(-2%, 2%) }
+  60%       { transform: translate(1%, -3%) }
+  70%       { transform: translate(-3%, 1%) }
+  80%       { transform: translate(2%, 3%) }
+  90%       { transform: translate(1%, -2%) }
+}
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  animation: grain 8s steps(10) infinite;
+  z-index: 1;
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Shimmer on hover */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Pulse glow - design spell */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(183,28,28,0.3); }
+  50%       { box-shadow: 0 0 50px rgba(183,28,28,0.6), 0 0 80px rgba(183,28,28,0.2); }
+}
+.glow-pulse {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Gradient border */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(183,28,28,0.6), transparent 50%, rgba(183,28,28,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  padding: 1px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: #0a0a0a; }
+::-webkit-scrollbar-thumb  { background: #222; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #b71c1c; }
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.section-padding { @apply py-32 px-6 md:px-12 lg:px-24; }
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #b71c1c 0%, #e53935 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Line clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   GOOGLE MAPS - Normal Color
+   ============================================================ */
+.map-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+}
+.map-container iframe {
+  /* Removed grayscale/invert to keep normal google maps colors */
+  transition: all 0.3s ease;
+}
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 24px;
+  /* subtle shadow inset for depth */
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* ============================================================
+   MOBILE — responsive fixes
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Disable skew on mobile gallery for readability */
+  .gallery-skew {
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .gallery-skew-inner {
+    transform: none !important;
+    scale: 1 !important;
+  }
+}
+
+/* ============================================================
+   SMOOTH HOVER TRANSITIONS — design-spells fix
+   All group-hover scale/color transitions must be smooth, never instant
+   ============================================================ */
+
+/* Scale transitions */
+[class*="group-hover:scale"],
+[class*="hover:scale"] {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  transition-duration: 600ms;
+}
+
+/* Color & background transitions */
+[class*="group-hover:bg-"],
+[class*="group-hover:text-"],
+[class*="hover:bg-"],
+[class*="hover:text-"],
+[class*="hover:border-"] {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  transition-duration: 450ms;
+}
+
+/* Opacity transitions */
+[class*="group-hover:opacity"],
+[class*="hover:opacity"] {
+  transition-property: opacity;
+  transition-timing-function: ease-out;
+  transition-duration: 400ms;
+}
+
+/* Combined — for elements that need multiple properties */
+.glass-premium,
+.glass,
+.glass-dark {
+  transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* ============================================================
+   REDUCED MOTION — a11y
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
