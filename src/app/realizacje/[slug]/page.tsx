@@ -10,6 +10,17 @@ import { ChevronLeft, Phone, ArrowRight, MapPin, Clock, ChevronRight, Settings, 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
+export async function generateStaticParams() {
+    return [
+      { slug: 'korekta-lakieru' },
+      { slug: 'powloki-ceramiczne' },
+      { slug: 'serwis-premium' },
+      { slug: 'detailing-wnetrza' },
+      { slug: 'folie-ochronne' },
+        ];
+}
+
+
 
 const PROJECT_DATA: Record<string, any> = {
   "korekta-lakieru": {
