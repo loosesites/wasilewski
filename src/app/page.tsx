@@ -334,7 +334,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.98 }}
           transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
-          className="mx-6 md:mx-12 lg:mx-24 2xl:mx-auto 2xl:max-w-[1800px] bg-white/[0.04] border border-white/10 rounded-[36px] md:rounded-[48px] overflow-hidden shadow-2xl backdrop-blur-md"
+          className="mx-6 md:mx-12 lg:mx-24 bg-white/[0.04] border border-white/10 rounded-[36px] md:rounded-[48px] overflow-hidden shadow-2xl backdrop-blur-md"
         >
           <div className="flex flex-col xl:flex-row">
 
