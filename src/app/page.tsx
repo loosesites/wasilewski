@@ -28,7 +28,7 @@ import {
 
 import Link from "next/link";
 
-const B = "";
+const B = "/wasilewski";
 
 const REVIEWS = [
   { name: "Marcin K.", car: "BMW M4 Competition", text: "Samochód wygląda jak prosto z salonu. Prawdziwi profesjonaliści!" },
