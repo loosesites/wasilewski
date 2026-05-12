@@ -581,6 +581,19 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
   const [activeReview, setActiveReview] = useState(0);
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const lenisRef = useRef<Lenis | null>(null);
+
+  const scrollToSection = (id: string) => {
+    const target = document.querySelector(id);
+    if (target && lenisRef.current) {
+      lenisRef.current.scrollTo(target, {
+        offset: -100,
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      });
+      setMobileMenuOpen(false);
+    }
+  };
 
   useEffect(() => {
     const t = setInterval(() => setActiveReview(p => (p + 1) % REVIEWS.length), 6000);
@@ -601,10 +614,12 @@ export default function Home() {
         orientation: "vertical",
         gestureOrientation: "vertical",
         smoothWheel: true,
-        wheelMultiplier: 1,
+        wheelMultiplier: 1.1,
         touchMultiplier: 2,
         infinite: false,
       });
+
+      lenisRef.current = lenis;
 
       function raf(time: number) {
         lenis?.raf(time);
@@ -683,14 +698,14 @@ export default function Home() {
               { name: 'Kontakt', href: '#contact' }
             ].map((item, i) => (
               <Magnetic key={item.name}>
-                <motion.a 
+                <motion.button 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.2 + i * 0.1 }}
-                  href={item.href} 
+                  onClick={() => scrollToSection(item.href)}
                   className={`relative py-2 group transition-all duration-300 ${activeSection === item.href.substring(1) ? 'text-white' : 'hover:text-white'}`}
                 >
-                  <span>{item.name}</span>
+                  <span className="text-[11px] font-black uppercase tracking-[0.35em]">{item.name}</span>
                   {/* Refined Active Indicator */}
                   <motion.span 
                     initial={false}
@@ -699,7 +714,7 @@ export default function Home() {
                   />
                   {/* Hover Line */}
                   <span className={`absolute -bottom-1 left-0 w-full h-[2px] bg-[#b71c1c] origin-left rounded-full transition-transform duration-500 ${activeSection === item.href.substring(1) ? 'scale-x-0' : 'scale-x-0 group-hover:scale-x-100'}`} />
-                </motion.a>
+                </motion.button>
               </Magnetic>
             ))}
           </div>
@@ -753,14 +768,13 @@ export default function Home() {
                   { name: 'O nas', href: '#about' },
                   { name: 'Kontakt', href: '#contact' }
                 ].map((item) => (
-                  <a 
+                  <button 
                     key={item.name}
-                    href={item.href} 
-                    className="text-sm font-black uppercase tracking-[0.3em] text-white py-2 hover:text-[#b71c1c] transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => scrollToSection(item.href)}
+                    className="text-2xl font-black uppercase tracking-widest text-white hover:text-red-600 transition-colors"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ))}
               </div>
             </motion.div>
