@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { 
   Phone, 
   MapPin, 
@@ -835,44 +835,7 @@ export default function Home() {
               { icon: ShieldCheck, label: "Gwarancja", val: "PREMIUM" },
               { icon: Clock, label: "Szybka", val: "REALIZACJA" }
             ].map((feat, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 1.4 + i * 0.1 }}
-                className="relative perspective-1000"
-              >
-                <motion.div 
-                  whileHover={{ 
-                    y: -20, 
-                    scale: 1.04,
-                    transition: { type: "spring", stiffness: 300, damping: 20 }
-                  }}
-                  className="glass-premium px-8 py-7 rounded-[2rem] flex items-center gap-6 group/feat cursor-default relative overflow-hidden border border-white/5 hover:border-red-600/30 transition-colors duration-500 shadow-2xl hover:shadow-red-600/20"
-                >
-                  {/* Subtle Red Gradient Background on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 to-transparent group-hover/feat:from-red-600/10 transition-all duration-700" />
-                  
-                  {/* Animated Light Sweep */}
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -translate-x-full group-hover/feat:translate-x-full transition-transform duration-1000 ease-in-out" />
-
-                  {/* Icon Box with Pulse */}
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 group-hover/feat:bg-red-600 group-hover/feat:border-red-600 group-hover/feat:scale-110 transition-all duration-500 relative z-10 overflow-hidden">
-                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/feat:translate-y-0 transition-transform duration-500" />
-                    <feat.icon className="w-8 h-8 text-red-600 group-hover/feat:text-white transition-colors relative z-10" strokeWidth={1.2} />
-                  </div>
-                  
-                  {/* Text Content */}
-                  <div className="flex flex-col relative z-10 transition-transform duration-500 group-hover/feat:translate-x-3">
-                    <span className="text-[10px] text-gray-400 leading-relaxed uppercase tracking-[0.3em] font-black mb-1 group-hover/feat:text-red-500 transition-colors">{feat.label}</span>
-                    <span className="text-lg font-black tracking-widest text-white">{feat.val}</span>
-                  </div>
-
-                  {/* Corner Glow Accent */}
-                  <div className="absolute -top-4 -right-4 w-16 h-16 bg-red-600/20 blur-2xl opacity-0 group-hover/feat:opacity-100 transition-opacity duration-700" />
-                </motion.div>
-              </motion.div>
+              <FeatureCard key={i} feat={feat} i={i} />
             ))}
           </motion.div>
         </div>
