@@ -586,7 +586,7 @@ export default function Home() {
   const scrollToSection = (id: string) => {
     const target = document.querySelector(id);
     if (target && lenisRef.current) {
-      lenisRef.current.scrollTo(target, {
+      lenisRef.current.scrollTo(target as HTMLElement, {
         offset: -100,
         duration: 1.5,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
