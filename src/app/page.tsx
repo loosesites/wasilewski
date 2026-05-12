@@ -75,83 +75,61 @@ function FeatureCard({ feat, i }: { feat: any, i: number }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], ["15deg", "-15deg"]), { stiffness: 100, damping: 30 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], ["-15deg", "15deg"]), { stiffness: 100, damping: 30 });
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const xPct = x / width - 0.5;
-    const yPct = y / height - 0.5;
-    mouseX.set(xPct);
-    mouseY.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
+    mouseX.set(x);
+    mouseY.set(y);
   };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -12 }}
+      whileHover={{ y: -15 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 1.4 + i * 0.1 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
+      transition={{ 
+        duration: 0.8, 
+        delay: 1.4 + i * 0.1,
+        y: { type: "spring", stiffness: 200, damping: 25 } 
       }}
-      className="relative group/feat cursor-default perspective-1000"
+      onMouseMove={handleMouseMove}
+      className="relative group/feat cursor-default"
     >
-      <div 
-        className="glass-premium px-8 py-7 rounded-[2rem] flex items-center gap-6 relative overflow-hidden border border-white/5 group-hover/feat:border-red-600/30 transition-all duration-500 shadow-2xl group-hover/feat:shadow-red-600/20"
-        style={{ transform: "translateZ(50px)" }}
-      >
-        {/* Advanced Shine Effect - Tracks Mouse */}
+      <div className="glass-premium px-8 py-7 rounded-[2rem] flex items-center gap-6 relative overflow-hidden border border-white/5 group-hover/feat:border-red-600/30 transition-all duration-700 shadow-2xl group-hover/feat:shadow-red-600/20">
+        
+        {/* Subtle Shine Effect - Tracking Mouse */}
         <motion.div 
-          className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover/feat:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover/feat:opacity-100 transition-opacity duration-700"
           style={{
             background: useMotionTemplate`
               radial-gradient(
-                600px circle at ${useTransform(mouseX, [-0.5, 0.5], ["0%", "100%"])} ${useTransform(mouseY, [-0.5, 0.5], ["0%", "100%"])},
-                rgba(255, 255, 255, 0.12),
-                transparent 40%
+                450px circle at ${mouseX}px ${mouseY}px,
+                rgba(255, 255, 255, 0.08),
+                transparent 60%
               )
             `
           }}
         />
 
-        {/* Diagonal Light Sweep on Enter */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.05] to-transparent -translate-x-full group-hover/feat:translate-x-full transition-transform duration-1000 ease-in-out z-0" />
+        {/* Smooth Diagonal Light Sweep */}
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.03] to-transparent -translate-x-full group-hover/feat:translate-x-full transition-transform duration-1000 ease-in-out z-0" />
 
-        {/* Icon Box - Premium Style with Red background on hover, Lifts instead of rotating */}
-        <div 
-          className="w-16 h-16 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 group-hover/feat:bg-red-600 group-hover/feat:border-red-600 group-hover/feat:scale-110 group-hover/feat:-translate-y-3 transition-all duration-500 relative z-10 overflow-hidden shadow-xl"
-          style={{ transform: "translateZ(20px)" }}
-        >
-          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/feat:translate-y-0 transition-transform duration-500" />
-          <feat.icon className="w-8 h-8 text-red-600 group-hover/feat:text-white transition-colors relative z-10" strokeWidth={1.2} />
+        {/* Icon Box - Smooth lift & color shift */}
+        <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 group-hover/feat:bg-red-600 group-hover/feat:border-red-600 group-hover/feat:scale-110 group-hover/feat:-translate-y-2 transition-all duration-700 relative z-10 overflow-hidden shadow-xl">
+          <div className="absolute inset-0 bg-white/10 translate-y-full group-hover/feat:translate-y-0 transition-transform duration-700 ease-out" />
+          <feat.icon className="w-8 h-8 text-red-600 group-hover/feat:text-white transition-colors duration-500 relative z-10" strokeWidth={1.2} />
         </div>
         
         {/* Text Content */}
-        <div 
-          className="flex flex-col relative z-10 transition-transform duration-500 group-hover/feat:translate-x-3"
-          style={{ transform: "translateZ(30px)" }}
-        >
-          <span className="text-[10px] text-gray-400 leading-relaxed uppercase tracking-[0.3em] font-black mb-1 group-hover/feat:text-red-500 transition-colors">{feat.label}</span>
+        <div className="flex flex-col relative z-10 transition-transform duration-700 group-hover/feat:translate-x-2">
+          <span className="text-[10px] text-gray-400 leading-relaxed uppercase tracking-[0.3em] font-black mb-1 group-hover/feat:text-red-500 transition-colors duration-500">{feat.label}</span>
           <span className="text-lg font-black tracking-widest text-white">{feat.val}</span>
         </div>
 
-        {/* Corner Glow Accent */}
-        <div className="absolute -top-4 -right-4 w-16 h-16 bg-red-600/20 blur-2xl opacity-0 group-hover/feat:opacity-100 transition-opacity duration-700" />
+        {/* Soft Corner Glow */}
+        <div className="absolute -top-4 -right-4 w-20 h-20 bg-red-600/10 blur-3xl opacity-0 group-hover/feat:opacity-100 transition-opacity duration-1000" />
       </div>
     </motion.div>
   );
