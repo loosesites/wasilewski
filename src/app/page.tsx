@@ -697,7 +697,7 @@ export default function Home() {
           className="absolute top-0 right-0 w-full md:w-[70%] h-[120%] z-0 overflow-hidden max-md:[clip-path:none] md:[clip-path:polygon(15%_0,100%_0,100%_100%,0%_100%)] will-change-transform"
         >
           <Image 
-            src={`${B}/hero.png` 
+            src={`${B}/hero.png`} 
             alt="Hero BMW" 
             fill 
             sizes="(max-width: 768px) 100vw, 70vw"
@@ -995,7 +995,7 @@ export default function Home() {
             {/* Diagonal clip matching gallery motif */}
             <div className="absolute inset-0 [clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]">
               <Image
-                src={`${B}/about.png`
+                src={`${B}/about.png`}
                 alt="AGA MAX Warsztat"
                 fill
                 sizes="50vw"
