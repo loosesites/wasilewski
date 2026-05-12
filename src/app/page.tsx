@@ -845,19 +845,30 @@ export default function Home() {
             ].map((feat, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 1.4 + i * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="glass-premium px-8 py-6 rounded-3xl flex items-center gap-6 group/feat cursor-default floating"
-                style={{ animationDelay: `${i * 0.5}s` }}
+                className="relative"
               >
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-[#b71c1c]/10 border border-[#b71c1c]/30 group-hover/feat:bg-[#b71c1c] group-hover/feat:border-[#b71c1c] transition-all duration-500 shadow-[0_0_20px_rgba(183,28,28,0)] group-hover/feat:shadow-[0_0_30px_rgba(183,28,28,0.4)]">
-                   <feat.icon className="w-7 h-7 text-[#b71c1c] group-hover/feat:text-white transition-colors" strokeWidth={1.5} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-gray-300 leading-relaxed uppercase tracking-widest font-black mb-1">{feat.label}</span>
-                  <span className="text-base font-black tracking-widest text-white group-hover:text-[#b71c1c] transition-colors">{feat.val}</span>
+                <div className="glass-premium px-8 py-6 rounded-3xl flex items-center gap-6 group/feat cursor-default relative overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-4 hover:scale-[1.03] hover:shadow-[0_30px_60px_rgba(0,0,0,0.5)] border border-white/10 hover:border-[#b71c1c]/30">
+                  {/* Background Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#b71c1c]/0 to-[#b71c1c]/0 group-hover/feat:from-[#b71c1c]/10 group-hover/feat:to-transparent transition-all duration-700" />
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/feat:animate-scan z-1" />
+
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-[#b71c1c]/10 border border-[#b71c1c]/30 group-hover/feat:bg-[#b71c1c] group-hover/feat:border-[#b71c1c] transition-all duration-500 shadow-[0_0_20px_rgba(183,28,28,0)] group-hover/feat:shadow-[0_0_30px_rgba(183,28,28,0.4)] relative z-10">
+                    <feat.icon className="w-7 h-7 text-[#b71c1c] group-hover/feat:text-white transition-colors" strokeWidth={1.5} />
+                  </div>
+                  
+                  <div className="flex flex-col relative z-10 transition-transform duration-500 group-hover/feat:translate-x-2">
+                    <span className="text-[10px] text-gray-400 leading-relaxed uppercase tracking-widest font-black mb-1 group-hover/feat:text-[#b71c1c]/80 transition-colors">{feat.label}</span>
+                    <span className="text-base font-black tracking-widest text-white group-hover:text-white transition-colors">{feat.val}</span>
+                  </div>
+
+                  {/* Corner Accent */}
+                  <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-[#b71c1c]/30 to-transparent opacity-0 group-hover/feat:opacity-100 transition-opacity duration-700" />
                 </div>
               </motion.div>
             ))}
