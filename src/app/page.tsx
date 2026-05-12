@@ -178,7 +178,7 @@ function GalleryGrid() {
   );
 }
 
-function InteractiveCarsGallery() {
+function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => void }) {
   const [activeCar, setActiveCar] = useState(0);
   const [activePhoto, setActivePhoto] = useState(0);
   const thumbsRef = useRef<HTMLDivElement>(null);
@@ -368,7 +368,7 @@ function InteractiveCarsGallery() {
 
                 {/* CTA Button */}
                 <button 
-                  onClick={() => setContactModalOpen(true)}
+                  onClick={onContactClick}
                   className="group/cta inline-flex items-center gap-4 bg-white/5 hover:bg-[#b71c1c] border border-white/10 hover:border-[#b71c1c] px-6 py-4 rounded-2xl transition-all duration-500 w-full justify-center shadow-xl"
                 >
                   <span className="text-white font-black text-[10px] uppercase tracking-[0.3em]">Chcę taki efekt</span>
@@ -855,7 +855,7 @@ export default function Home() {
 
         {/* Gallery Content */}
         <div className="relative z-10">
-          <InteractiveCarsGallery />
+          <InteractiveCarsGallery onContactClick={() => setContactModalOpen(true)} />
         </div>
       </section>
 
