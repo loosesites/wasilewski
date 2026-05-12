@@ -99,6 +99,7 @@ function FeatureCard({ feat, i }: { feat: any, i: number }) {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -12 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 1.4 + i * 0.1 }}
       onMouseMove={handleMouseMove}
@@ -111,7 +112,7 @@ function FeatureCard({ feat, i }: { feat: any, i: number }) {
       className="relative group/feat cursor-default perspective-1000"
     >
       <div 
-        className="glass-premium px-8 py-7 rounded-[2rem] flex items-center gap-6 relative overflow-hidden border border-white/5 group-hover/feat:border-red-600/30 transition-colors duration-500 shadow-2xl group-hover/feat:shadow-red-600/20"
+        className="glass-premium px-8 py-7 rounded-[2rem] flex items-center gap-6 relative overflow-hidden border border-white/5 group-hover/feat:border-red-600/30 transition-all duration-500 shadow-2xl group-hover/feat:shadow-red-600/20"
         style={{ transform: "translateZ(50px)" }}
       >
         {/* Advanced Shine Effect - Tracks Mouse */}
@@ -131,9 +132,9 @@ function FeatureCard({ feat, i }: { feat: any, i: number }) {
         {/* Diagonal Light Sweep on Enter */}
         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.05] to-transparent -translate-x-full group-hover/feat:translate-x-full transition-transform duration-1000 ease-in-out z-0" />
 
-        {/* Icon Box - Premium Style with Red background on hover */}
+        {/* Icon Box - Premium Style with Red background on hover, Lifts instead of rotating */}
         <div 
-          className="w-16 h-16 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 group-hover/feat:bg-red-600 group-hover/feat:border-red-600 group-hover/feat:scale-110 group-hover/feat:rotate-[5deg] transition-all duration-500 relative z-10 overflow-hidden shadow-xl"
+          className="w-16 h-16 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 group-hover/feat:bg-red-600 group-hover/feat:border-red-600 group-hover/feat:scale-110 group-hover/feat:-translate-y-3 transition-all duration-500 relative z-10 overflow-hidden shadow-xl"
           style={{ transform: "translateZ(20px)" }}
         >
           <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/feat:translate-y-0 transition-transform duration-500" />
