@@ -592,7 +592,6 @@ export default function Home() {
             {[
               { name: 'O nas', href: '#about' },
               { name: 'Usługi', href: '#services' },
-              { name: 'Cennik', href: '#pricing' },
               { name: 'Realizacje', href: '#realizations' },
               { name: 'Kontakt', href: '#contact' }
             ].map((item) => (
@@ -662,7 +661,6 @@ export default function Home() {
               {[
                 { name: 'O nas', href: '#about' },
                 { name: 'Usługi', href: '#services' },
-                { name: 'Cennik', href: '#pricing' },
                 { name: 'Realizacje', href: '#realizations' },
                 { name: 'Kontakt', href: '#contact' }
               ].map((item) => (
