@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
 import { 
   Phone, 
   MapPin, 
@@ -585,11 +584,16 @@ export default function Home() {
 
   const scrollToSection = (id: string) => {
     const target = document.querySelector(id);
-    if (target && lenisRef.current) {
-      lenisRef.current.scrollTo(target as HTMLElement, {
-        offset: -100,
-        duration: 1.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+    if (target) {
+      const offset = 100;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = target.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
       setMobileMenuOpen(false);
     }
@@ -604,30 +608,7 @@ export default function Home() {
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
 
   useEffect(() => {
-    let lenis: Lenis | null = null;
-    
     let rafId: number;
-    if (typeof window !== "undefined") {
-      lenis = new Lenis({
-        duration: 1.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 1.1,
-        touchMultiplier: 2,
-        infinite: false,
-      });
-
-      lenisRef.current = lenis;
-
-      function raf(time: number) {
-        lenis?.raf(time);
-        rafId = requestAnimationFrame(raf);
-      }
-
-      rafId = requestAnimationFrame(raf);
-    }
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -648,8 +629,6 @@ export default function Home() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(rafId);
-      lenis?.destroy();
     };
   }, []);
 
