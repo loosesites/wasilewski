@@ -30,9 +30,9 @@ import Link from "next/link";
 const B = "/wasilewski";
 
 const REVIEWS = [
-  { name: "Marcin K.", car: "BMW M4 Competition", text: "Samochód wygląda jak prosto z salonu. Prawdziwi profesjonaliści!" },
-  { name: "Tomasz W.", car: "Porsche 911 Carrera", text: "Powłoka ceramiczna perfekcyjna. Polecam każdemu właścicielowi premium auta." },
-  { name: "Aleksandra M.", car: "Audi RS6 Avant", text: "Korekta lakieru przeszła moje oczekiwania. Rysy jak ręką odjął." },
+  { name: "Marcin K.", car: "BMW M4 Competition", text: "Szybka i trafna diagnoza usterki, z którą inni nie mogli sobie poradzić. Pełen profesjonalizm!" },
+  { name: "Tomasz W.", car: "Porsche 911 Carrera", text: "Serwis olejowy i przegląd wykonany perfekcyjnie. Czuć, że auto jest w rękach pasjonatów mechaniki." },
+  { name: "Aleksandra M.", car: "Audi RS6 Avant", text: "Naprawa zawieszenia przywróciła autu dawną precyzję prowadzenia. Bardzo solidny warsztat." },
 ];
 
 function Magnetic({ children }: { children: React.ReactElement }) {
@@ -138,43 +138,43 @@ function FeatureCard({ feat, i }: { feat: any, i: number }) {
 function GalleryGrid() {
   const items = [
     {
-      src: `${B}/gallery_bg.webp`,
-      cat: "DETAILING",
-      title: "Korekta Lakieru",
+      src: `${B}/gallery_bg.png`,
+      cat: "MECHANIKA",
+      title: "Naprawy Silników",
       num: "01",
-      slug: "korekta-lakieru",
+      slug: "naprawy-silnikow",
       cls: "col-span-2 md:col-span-7 h-[220px] sm:h-[300px] md:h-[480px]",
     },
     {
-      src: `${B}/gallery_ceramic.webp`,
-      cat: "CERAMIKA",
-      title: "Powłoki Ceramiczne",
+      src: `${B}/gallery_ceramic.png`,
+      cat: "DIAGNOSTYKA",
+      title: "Elektronika Pojazdowa",
       num: "02",
-      slug: "powloki-ceramiczne",
+      slug: "diagnostyka-komputerowa",
       cls: "col-span-2 md:col-span-5 h-[220px] sm:h-[300px] md:h-[480px]",
     },
     {
-      src: `${B}/hero.webp`,
-      cat: "MECHANIKA",
-      title: "Serwis Premium",
+      src: `${B}/hero.png`,
+      cat: "SERWIS",
+      title: "Przeglądy Okresowe",
       num: "03",
-      slug: "serwis-premium",
+      slug: "przeglady-okresowe",
       cls: "col-span-1 md:col-span-4 h-[220px] sm:h-[260px] md:h-[380px]",
     },
     {
-      src: `${B}/gallery_interior.webp`,
-      cat: "WNĘTRZE",
-      title: "Detailing Wnętrza",
+      src: `${B}/gallery_interior.png`,
+      cat: "ZAWIESZENIE",
+      title: "Układy Jezdne",
       num: "04",
-      slug: "detailing-wnetrza",
+      slug: "naprawa-zawieszenia",
       cls: "col-span-1 md:col-span-4 h-[220px] sm:h-[260px] md:h-[380px]",
     },
     {
-      src: `${B}/about.webp`,
-      cat: "PPF",
-      title: "Folie Ochronne",
+      src: `${B}/about.png`,
+      cat: "HAMULCE",
+      title: "Bezpieczeństwo",
       num: "05",
-      slug: "folie-ochronne",
+      slug: "uklady-hamulcowe",
       cls: "col-span-2 md:col-span-4 h-[220px] sm:h-[260px] md:h-[380px]",
     },
   ];
@@ -253,73 +253,73 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
       id: "bmw",
       name: "BMW M4 Competition",
       year: "2023",
-      tag: "CERAMIKA 5-LETNIA",
-      category: "Powłoka Ceramiczna",
-      desc: "Wieloetapowa korekta lakieru z aplikacją 5-letniej powłoki ceramicznej na lakier, felgi oraz plastiki zewnętrzne. Auto zyskało niesamowitą głębię i szklistość lustrzanego odbicia.",
-      services: ["Korekta lakieru II-stopniowa", "Powłoka ceramiczna 5Y", "Zabezpieczenie felg", "Impregnat szyb"],
-      photos: [`${B}/hero.webp`, `${B}/gallery_bg.webp`, `${B}/gallery_ceramic.webp`],
-      beforeImg: `${B}/gallery_ceramic.webp`,
-      afterImg: `${B}/hero.webp`,
+      tag: "NAPRAWA SILNIKA",
+      category: "Mechanika Silnikowa",
+      desc: "Kompleksowa naprawa układu wtryskowego oraz uszczelnienie silnika S58. Przywróciliśmy pełną moc i fabryczne parametry pracy jednostki napędowej.",
+      services: ["Diagnostyka komputerowa", "Wymiana wtryskiwaczy", "Uszczelnienie góry silnika", "Adaptacja sterownika"],
+      photos: [`${B}/hero.png`, `${B}/gallery_bg.png`, `${B}/gallery_ceramic.png`],
+      beforeImg: `${B}/gallery_ceramic.png`,
+      afterImg: `${B}/hero.png`,
     },
     {
       id: "porsche",
       name: "Porsche 911 GT3",
       year: "2022",
-      tag: "PPF FULL FRONT",
-      category: "Folia Ochronna PPF",
-      desc: "Zabezpieczenie całego frontu, lamp, lusterek oraz newralgicznych punktów lakieru folią PPF. Kompleksowy detailing wnętrza wraz z bezinwazyjną impregnacją skór Alcantara.",
-      services: ["PPF Full Front", "PPF Lusterka + Lampy", "Detailing wnętrza", "Impregnacja Alcantara"],
-      photos: [`${B}/gallery_bg.webp`, `${B}/hero.webp`, `${B}/about.webp`],
-      beforeImg: `${B}/about.webp`,
-      afterImg: `${B}/gallery_bg.webp`,
+      tag: "ZAWIESZENIE TOROWE",
+      category: "Geometria i Zawieszenie",
+      desc: "Profesjonalne ustawienie geometrii kół w systemie 3D oraz wymiana wahaczy przedniej osi. Auto odzyskało perfekcyjną precyzję prowadzenia na torze i drogach publicznych.",
+      services: ["Geometria 3D", "Wymiana wahaczy", "Kalibracja PASM", "Przegląd układu kierowniczego"],
+      photos: [`${B}/gallery_bg.png`, `${B}/hero.png`, `${B}/about.png`],
+      beforeImg: `${B}/about.png`,
+      afterImg: `${B}/gallery_bg.png`,
     },
     {
       id: "mercedes",
       name: "Mercedes G-Class",
       year: "2021",
-      tag: "DETAILING WNĘTRZA",
-      category: "Detailing Premium",
-      desc: "Pranie ekstrakcyjne całego wnętrza, ozonowanie systemu wentylacji oraz wieloetapowa regeneracja luksusowej skórzanej tapicerki i drewnianych dekorów kokpitu.",
-      services: ["Pranie ekstrakcyjne", "Ozonowanie wnętrza", "Regeneracja skóry", "Renowacja dekorów"],
-      photos: [`${B}/gallery_interior.webp`, `${B}/gallery_bg.webp`, `${B}/hero.webp`],
-      beforeImg: `${B}/gallery_interior.webp`,
-      afterImg: `${B}/gallery_interior.webp`,
+      tag: "SERWIS SKRZYNI",
+      category: "Naprawa Napędów",
+      desc: "Dynamiczna wymiana oleju w automatycznej skrzyni biegów 9G-Tronic oraz serwis mostów napędowych. Zapewniliśmy płynność zmiany przełożeń i trwałość napędu 4x4.",
+      services: ["Dynamiczna wymiana oleju", "Serwis skrzyń rozdzielczych", "Uszczelnienie mostów", "Diagnostyka elektroniki"],
+      photos: [`${B}/gallery_interior.png`, `${B}/gallery_bg.png`, `${B}/hero.png`],
+      beforeImg: `${B}/gallery_interior.png`,
+      afterImg: `${B}/gallery_interior.png`,
     },
     {
       id: "audi",
       name: "Audi RS6 Avant",
       year: "2023",
-      tag: "KOREKTA + DETAILING",
-      category: "Korekta Lakieru",
-      desc: "Trzyetapowa korekta lakieru z usunięciem 95% zarysowań i pająków. Finalnie aplikacja rocznej powłoki ceramicznej oraz kompleksowy detailing wnętrza i bagażnika.",
-      services: ["Korekta III-stopniowa", "Usuwanie zarysowań", "Powłoka ceramiczna 1Y", "Detailing full"],
-      photos: [`${B}/gallery_ceramic.webp`, `${B}/gallery_interior.webp`, `${B}/gallery_bg.webp`],
-      beforeImg: `${B}/gallery_ceramic.webp`,
-      afterImg: `${B}/gallery_interior.webp`,
+      tag: "UKŁAD HAMULCOWY",
+      category: "Serwis Hamulców",
+      desc: "Wymiana kompletu tarcz i klocków ceramicznych oraz regeneracja zacisków. Zastosowaliśmy najwyższej klasy komponenty, zapewniając maksymalną siłę hamowania.",
+      services: ["Wymiana tarcz i klocków", "Regeneracja zacisków", "Płyn hamulcowy premium", "Przewody w oplocie"],
+      photos: [`${B}/gallery_ceramic.png`, `${B}/gallery_interior.png`, `${B}/gallery_bg.png`],
+      beforeImg: `${B}/gallery_ceramic.png`,
+      afterImg: `${B}/gallery_interior.png`,
     },
     {
       id: "lamborghini",
       name: "Lamborghini Huracán",
       year: "2022",
-      tag: "PPF FULL BODY",
-      category: "Folia PPF Full Body",
-      desc: "Prestiżowe zabezpieczenie całej karoserii folią PPF najwyższej klasy z efektem self-healing. Projekt realizowany przez ponad 5 dni pracy z najwyższą precyzją.",
-      services: ["PPF Full Body", "Self-healing PPF", "Montaż bez krawędziowy", "Certyfikat gwarancji"],
-      photos: [`${B}/hero.webp`, `${B}/gallery_bg.webp`, `${B}/about.webp`],
-      beforeImg: `${B}/about.webp`,
-      afterImg: `${B}/hero.webp`,
+      tag: "DIAGNOSTYKA MOCY",
+      category: "Tuning i Elektronika",
+      desc: "Zaawansowana diagnostyka układu paliwowego oraz optymalizacja oprogramowania sterującego silnikiem V10. Bezpieczny przyrost parametrów i lepsza reakcja na gaz.",
+      services: ["Hamownia drogowa", "Logowanie parametrów", "Indywidualny strojenie", "Usunięcie limiterów"],
+      photos: [`${B}/hero.png`, `${B}/gallery_bg.png`, `${B}/about.png`],
+      beforeImg: `${B}/about.png`,
+      afterImg: `${B}/hero.png`,
     },
     {
       id: "tesla",
       name: "Tesla Model S Plaid",
       year: "2024",
-      tag: "POWŁOKA + FOLIA",
-      category: "Pakiet Kompleksowy",
-      desc: "Kompleksowy pakiet ochrony — PPF na newralgicznych punktach, powłoka ceramiczna na pozostałym lakierze oraz specjalistyczne zabezpieczenie matrycy i ekranu dotykowego.",
-      services: ["PPF punktowy", "Ceramika na lakier", "Ochrona ekranów", "Zabezpieczenie ładowarki"],
-      photos: [`${B}/gallery_interior.webp`, `${B}/hero.webp`, `${B}/gallery_ceramic.webp`],
-      beforeImg: `${B}/gallery_interior.webp`,
-      afterImg: `${B}/gallery_ceramic.webp`,
+      tag: "SERWIS ELEKTRYKA",
+      category: "Serwis Aut EV",
+      desc: "Specjalistyczny przegląd układu chłodzenia baterii oraz diagnostyka systemów wysokonapięciowych. Zapewniamy profesjonalną obsługę najnowocześniejszych napędów elektrycznych.",
+      services: ["Diagnostyka HV", "Serwis chłodzenia baterii", "Aktualizacja systemów", "Przegląd zawieszenia pneum."],
+      photos: [`${B}/gallery_interior.png`, `${B}/hero.png`, `${B}/gallery_ceramic.png`],
+      beforeImg: `${B}/gallery_interior.png`,
+      afterImg: `${B}/gallery_ceramic.png`,
     },
   ];
 
@@ -877,7 +877,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-gray-300 leading-relaxed text-base md:text-lg max-w-md mb-8 leading-relaxed font-medium"
             >
-              Ekskluzywny detailing i zaawansowana technologia, która przywraca Twojemu autu salonowy blask.
+              Zaawansowana mechanika pojazdowa i diagnostyka komputerowa. Przywracamy fabryczną sprawność Twojemu samochodowi.
             </motion.p>
 
             <motion.div 
@@ -910,8 +910,8 @@ export default function Home() {
           >
             {[
               { icon: Settings, label: "Doświadczenie", val: "12+ LAT" },
-              { icon: ShieldCheck, label: "Gwarancja", val: "PREMIUM" },
-              { icon: Clock, label: "Szybka", val: "REALIZACJA" }
+              { icon: ShieldCheck, label: "Gwarancja", val: "SERWIS PREMIUM" },
+              { icon: Clock, label: "Szybka", val: "DIAGNOZA" }
             ].map((feat, i) => (
               <FeatureCard key={i} feat={feat} i={i} />
             ))}
@@ -933,10 +933,10 @@ export default function Home() {
         </div>
         <div className="flex flex-col">
           {[
-            { num: "12+", label: "Lat Doświadczenia", sub: "W branży detailingu i zabezpieczeń", idx: "01" },
-            { num: "150+", label: "Projektów Premium", sub: "Zrealizowanych z precyzją chirurga", idx: "02" },
-            { num: "980+", label: "Zadowolonych Klientów", sub: "Którzy regularnie do nas wracają", idx: "03" },
-            { num: "98%", label: "Satysfakcji", sub: "Potwierdzonej przez każdego klienta", idx: "04" }
+            { num: "12+", label: "Lat Doświadczenia", sub: "W branży mechaniki i diagnostyki", idx: "01" },
+            { num: "5000+", label: "Naprawionych Aut", sub: "Zrealizowanych z pasją i precyzją", idx: "02" },
+            { num: "100%", label: "Profesjonalizmu", sub: "Zadowoleni kierowcy, którzy nam ufają", idx: "03" },
+            { num: "98%", label: "Satysfakcji", sub: "Potwierdzonej przez stałych klientów", idx: "04" }
           ].map((stat, i) => (
             <StatsRow key={i} stat={stat} i={i} />
           ))}
@@ -1014,12 +1014,12 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto perspective-3d">
           {[
-            { icon: Droplets, title: "Detailing", desc: "Przywracamy fabryczny stan wnętrza i nadwozia z chirurgiczną precyzją." },
-            { icon: Palette, title: "Polerowanie", desc: "Wieloetapowa korekta lakieru usuwająca 99% zarysowań i defektów." },
-            { icon: ShieldCheck, title: "Ochrona", desc: "Najtwardsze powłoki ceramiczne i grafenowe z gwarancją do 5 lat." },
-            { icon: Settings, title: "Regeneracja", desc: "Przywracamy blask felgom i elementom ozdobnym Twojego pojazdu." },
-            { icon: Gauge, title: "Moc & Tuning", desc: "Bezpieczna optymalizacja oprogramowania dla lepszych osiągów." },
-            { icon: Car, title: "Folie PPF", desc: "Niewidzialna tarcza chroniąca Twój lakier przed kamieniami i chemią." }
+            { icon: Gauge, title: "Diagnostyka", desc: "Komputerowa analiza systemów i usuwanie błędów z chirurgiczną precyzją." },
+            { icon: Settings, title: "Silniki", desc: "Główne naprawy jednostek napędowych i skrzyń biegów wszystkich marek." },
+            { icon: Droplets, title: "Serwis", desc: "Wymiana olejów, filtrów i płynów eksploatacyjnych najwyższej klasy." },
+            { icon: ShieldCheck, title: "Hamulce", desc: "Kompleksowa obsługa układów hamulcowych — bezpieczeństwo to priorytet." },
+            { icon: Gauge, title: "Moc & Tuning", desc: "Bezpieczna optymalizacja oprogramowania i zwiększanie wydajności silnika." },
+            { icon: Car, title: "Zawieszenie", desc: "Naprawa układów jezdnych, geometria 3D i wymiana elementów tłumiących." }
           ].map((service, i) => (
             <motion.div 
               key={i} 
@@ -1078,8 +1078,8 @@ export default function Home() {
             </div>
 
             <p className="text-gray-300 leading-relaxed text-lg leading-relaxed font-medium max-w-lg mb-12">
-              W AGA MAX wierzymy, że każdy samochód ma swoją duszę. Naszym zadaniem jest ją wydobyć i chronić.
-              Nie jesteśmy zwykłym warsztatem — jesteśmy kuratorami motoryzacyjnej doskonałości.
+              W AGA MAX wierzymy, że każdy samochód to precyzyjna maszyna. Naszym zadaniem jest dbać o jej idealny stan techniczny.
+              Nie jesteśmy zwykłym warsztatem — jesteśmy inżynierami motoryzacyjnej sprawności.
             </p>
 
             {/* Stats row */}
