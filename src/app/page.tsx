@@ -353,22 +353,24 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
         {/* Scrollable strip */}
         <div
           ref={thumbsRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth px-8"
+          className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth px-8 py-10"
           style={{ scrollbarWidth: "none" }}
         >
           {CARS.map((c, idx) => (
             <button
               key={c.id}
               onClick={() => selectCar(idx)}
-              className={`relative shrink-0 w-[220px] md:w-[260px] aspect-[3/2] rounded-2xl overflow-hidden border-2 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group/thumb ${activeCar === idx ? "border-[#b71c1c] shadow-[0_0_24px_rgba(183,28,28,0.5)] scale-[1.04] z-10" : "border-white/10 opacity-60 hover:opacity-100 hover:border-white/30 hover:scale-[1.02]"}`}
+              className={`relative shrink-0 w-[220px] md:w-[260px] aspect-[3/2] rounded-2xl border-2 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group/thumb ${activeCar === idx ? "border-transparent shadow-[0_0_24px_rgba(183,28,28,0.5)] scale-[1.04] z-10" : "border-white/10 opacity-60 hover:opacity-100 hover:border-white/30 hover:scale-[1.02]"}`}
             >
-              <Image src={c.photos[0]} alt={c.name} fill className="object-cover transition-transform duration-700 group-hover/thumb:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+              <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                <Image src={c.photos[0]} alt={c.name} fill className="object-cover transition-transform duration-700 group-hover/thumb:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+              </div>
               {/* Active glow ring */}
               {activeCar === idx && (
-                <motion.div layoutId="glowRing" className="absolute inset-0 rounded-2xl border-2 border-[#b71c1c] shadow-[inset_0_0_20px_rgba(183,28,28,0.2)] pointer-events-none" />
+                <motion.div layoutId="glowRing" className="absolute inset-[-2px] rounded-2xl border-2 border-[#b71c1c] shadow-[inset_0_0_20px_rgba(183,28,28,0.2)] pointer-events-none" />
               )}
-              <div className="absolute bottom-0 left-0 right-0 p-4">
+              <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
                 <p className="text-[#b71c1c] text-[8px] font-bold uppercase tracking-[0.35em] mb-0.5">{c.tag}</p>
                 <p className="text-white font-bold text-xs uppercase tracking-wider leading-tight">{c.name}</p>
                 <p className="text-white/40 text-[9px] mt-0.5">{c.year}</p>
@@ -394,11 +396,17 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
       <AnimatePresence mode="wait">
         <motion.div
           key={activeCar}
-          initial={{ opacity: 0, y: 40, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -20, scale: 0.98 }}
-          transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
-          className="mx-6 md:mx-12 lg:mx-24 bg-white/[0.04] border border-white/10 rounded-[36px] md:rounded-[48px] overflow-hidden shadow-2xl backdrop-blur-md"
+          initial={{ opacity: 0, y: 50, scale: 0.92, rotateX: 2, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -40, scale: 0.95, filter: "blur(10px)" }}
+          transition={{ 
+            type: "spring",
+            stiffness: 120,
+            damping: 20,
+            mass: 0.8,
+            duration: 0.7
+          }}
+          className="mx-6 md:mx-12 lg:mx-24 bg-white/[0.04] border border-white/10 rounded-[36px] md:rounded-[48px] overflow-hidden shadow-2xl backdrop-blur-md preserve-3d"
         >
           <div className="flex flex-col xl:flex-row">
 
@@ -465,10 +473,15 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`${activeCar}-${activePhoto}`}
-                    initial={{ opacity: 0, x: 60 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -60 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    initial={{ opacity: 0, x: 80, scale: 1.05 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -80, scale: 1.05 }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 180,
+                      damping: 24,
+                      mass: 0.6
+                    }}
                     className="absolute inset-0"
                   >
                     <Image src={car.photos[activePhoto]} alt={`${car.name} zdjęcie ${activePhoto + 1}`} fill className="object-cover" />
@@ -1126,8 +1139,11 @@ export default function Home() {
               <p className="text-[#b71c1c] text-[10px] font-bold tracking-widest mt-1">CERTYFIKOWANY SERWIS</p>
             </div>
 
-            {/* Red diagonal accent bar */}
-            <div className="absolute top-0 left-[7%] w-[2px] h-full bg-gradient-to-b from-transparent via-[#b71c1c]/60 to-transparent pointer-events-none" />
+            {/* Red diagonal accent bar — perfectly aligned with clip-path */}
+            <div 
+              className="absolute inset-0 bg-gradient-to-b from-transparent via-[#b71c1c]/60 to-transparent pointer-events-none z-10"
+              style={{ clipPath: 'polygon(8% 0, calc(8% + 2px) 0, 2px 100%, 0% 100%)' }}
+            />
           </motion.div>
 
         </div>
