@@ -1310,7 +1310,7 @@ export default function Home() {
               href="https://www.google.com/maps/dir/?api=1&destination=AGA+MAX+Wasilewscy+Morwowa+34+11-041+Olsztyn"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-6 right-6 bg-[#b71c1c] hover:bg-white hover:text-black transition-all duration-300 text-white font-black text-[9px] uppercase tracking-[0.3em] px-6 py-4 rounded-full flex items-center gap-2 shadow-[0_10px_30px_rgba(183,28,28,0.4)]"
+              className="absolute bottom-6 right-28 bg-[#b71c1c] hover:bg-white hover:text-black transition-all duration-300 text-white font-black text-[9px] uppercase tracking-[0.3em] px-6 py-4 rounded-full flex items-center gap-2 shadow-[0_10px_30px_rgba(183,28,28,0.4)] z-20"
             >
               NAWIGUJ <ChevronRight className="w-3 h-3" />
             </a>
