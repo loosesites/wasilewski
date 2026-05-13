@@ -888,6 +888,7 @@ export default function Home() {
             >
               <Magnetic>
                 <motion.button 
+                  onClick={() => scrollToSection('#realizations')}
                   whileHover={{ scale: 1.05, backgroundColor: "#8b1115", x: 10 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-[#b71c1c] rounded-full text-white font-black uppercase tracking-[0.3em] text-[10px] md:text-xs px-8 py-4 md:px-12 md:py-6 flex items-center gap-6 md:gap-8 transition-all shadow-[0_20px_40px_rgba(183,28,28,0.3)] hover:shadow-[0_0_50px_rgba(183,28,28,0.6)] group/btn relative overflow-hidden"
