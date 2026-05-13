@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Unbounded, Outfit, Space_Grotesk } from "next/font/google";
+import { Unbounded, Outfit } from "next/font/google";
 import "./globals.css";
 
 const unbounded = Unbounded({
@@ -16,12 +16,7 @@ const outfit = Outfit({
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-accent",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-});
+
 
 export const metadata: Metadata = {
   title: "AGA MAX Wasilewscy — Ekskluzywny Serwis i Detailing Samochodowy",
@@ -44,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${unbounded.variable} ${outfit.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${unbounded.variable} ${outfit.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0a0a0a]">{children}</body>
     </html>

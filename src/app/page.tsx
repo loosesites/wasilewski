@@ -338,7 +338,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
   const selectCar = (idx: number) => { setActiveCar(idx); setActivePhoto(0); };
 
   return (
-    <div className="w-full flex flex-col gap-6 md:gap-10 pb-16" style={{ fontFamily: "var(--font-accent, var(--font-body))" }}>
+    <div className="w-full flex flex-col gap-6 md:gap-10 pb-16">
 
       {/* ── Thumbnails row with arrows ── */}
       <div className="relative px-6 md:px-12 lg:px-24">

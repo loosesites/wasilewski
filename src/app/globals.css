@@ -13,7 +13,7 @@
   background-size: 100% 1500px;
   background-position: center 0px;
   background-repeat: repeat-y;
-  animation: wave-flow 120s linear infinite;
+  animation: wave-flow 180s linear infinite;
   mask-image: linear-gradient(to bottom, black 0%, black 20%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 20%, transparent 100%);
 }
