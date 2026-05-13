@@ -729,6 +729,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 1 }}
+              onClick={() => scrollToSection('#hero')}
               className="flex items-center cursor-pointer group"
             >
               <Image
