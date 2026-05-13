@@ -1107,7 +1107,7 @@ export default function Home() {
             {/* Diagonal clip matching gallery motif */}
             <div className="absolute inset-0 [clip-path:polygon(8%_0,100%_0,100%_100%,0%_100%)]">
               <Image
-                src={`${B}/about.png`}
+                src={`${B}/about.webp`}
                 alt="AGA MAX Warsztat"
                 fill
                 sizes="50vw"
@@ -1305,7 +1305,7 @@ export default function Home() {
         <div className="px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-12 max-w-7xl mx-auto">
           <div className="flex flex-col items-center md:items-start gap-3">
              <Image
-               src={`${B}/logo.png`}
+               src={`${B}/logo.webp`}
                alt="AGA-MAX Wasilewscy"
                width={160}
                height={40}
