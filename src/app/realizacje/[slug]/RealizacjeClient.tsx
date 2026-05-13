@@ -17,11 +17,11 @@ const PROJECT_DATA: Record<string, any> = {
     heading1: "GŁĘBIA",
     heading2: "LAKIERU",
     desc: "Korekta lakieru to proces wymagający niesamowitej cierpliwości. Każda rysa to dla nas skaza na idealnym obrazie, którą bezwzględnie usuwamy.",
-    heroImage: `${B}/hero.png`,
-    wideImage: `${B}/gallery_bg.png`,
+    heroImage: `${B}/hero.webp`,
+    wideImage: `${B}/gallery_bg.webp`,
     wideWord: "PERFEKCJA",
-    smallImage: `${B}/about.png`,
-    tallImage: `${B}/gallery_ceramic.png`
+    smallImage: `${B}/about.webp`,
+    tallImage: `${B}/gallery_ceramic.webp`
   },
   "powloki-ceramiczne": {
     superTitle: "OCHRONA PREMIUM",
@@ -30,11 +30,11 @@ const PROJECT_DATA: Record<string, any> = {
     heading1: "ZBROJA",
     heading2: "CERAMIKI",
     desc: "Wieloletnia ochrona przed mikrozarysowaniami i agresywną chemią. Twój lakier zyskuje niesamowity połysk i właściwości hydrofobowe.",
-    heroImage: `${B}/gallery_ceramic.png`,
-    wideImage: `${B}/hero.png`,
+    heroImage: `${B}/gallery_ceramic.webp`,
+    wideImage: `${B}/hero.webp`,
     wideWord: "BLASK",
-    smallImage: `${B}/gallery_interior.png`,
-    tallImage: `${B}/gallery_bg.png`
+    smallImage: `${B}/gallery_interior.webp`,
+    tallImage: `${B}/gallery_bg.webp`
   },
   "serwis-premium": {
     superTitle: "PRECYZJA INŻYNIERII",
@@ -43,11 +43,11 @@ const PROJECT_DATA: Record<string, any> = {
     heading1: "SERWIS",
     heading2: "KLASY VIP",
     desc: "Najwyższy standard obsługi mechanicznej. Oddając nam swój wóz, zyskujesz pewność, że zajmą się nim eksperci od samochodów luksusowych i sportowych.",
-    heroImage: `${B}/hero.png`,
-    wideImage: `${B}/gallery_bg.png`,
+    heroImage: `${B}/hero.webp`,
+    wideImage: `${B}/gallery_bg.webp`,
     wideWord: "MOC",
-    smallImage: `${B}/gallery_ceramic.png`,
-    tallImage: `${B}/gallery_interior.png`
+    smallImage: `${B}/gallery_ceramic.webp`,
+    tallImage: `${B}/gallery_interior.webp`
   },
   "detailing-wnetrza": {
     superTitle: "LUKSUS WNĘTRZA",
@@ -56,11 +56,11 @@ const PROJECT_DATA: Record<string, any> = {
     heading1: "CZYSTOŚĆ",
     heading2: "ABSOLUTNA",
     desc: "Pielęgnacja skór, pranie ekstrakcyjne, ozonowanie. Każdy detal kabiny zostaje odświeżony i zabezpieczony dedykowanymi kosmetykami premium.",
-    heroImage: `${B}/gallery_interior.png`,
-    wideImage: `${B}/about.png`,
+    heroImage: `${B}/gallery_interior.webp`,
+    wideImage: `${B}/about.webp`,
     wideWord: "DETAL",
-    smallImage: `${B}/hero.png`,
-    tallImage: `${B}/gallery_bg.png`
+    smallImage: `${B}/hero.webp`,
+    tallImage: `${B}/gallery_bg.webp`
   },
   "folie-ochronne": {
     superTitle: "ZABEZPIECZENIE PPF",
@@ -69,11 +69,11 @@ const PROJECT_DATA: Record<string, any> = {
     heading1: "TARCZA",
     heading2: "OCHRONNA",
     desc: "Folie poliuretanowe to jedyny skuteczny sposób na odpryski od kamieni. Regenerują się pod wpływem ciepła i chronią najdroższe elementy.",
-    heroImage: `${B}/about.png`,
-    wideImage: `${B}/hero.png`,
+    heroImage: `${B}/about.webp`,
+    wideImage: `${B}/hero.webp`,
     wideWord: "OCHRONA",
-    smallImage: `${B}/gallery_bg.png`,
-    tallImage: `${B}/gallery_ceramic.png`
+    smallImage: `${B}/gallery_bg.webp`,
+    tallImage: `${B}/gallery_ceramic.webp`
   }
 };
 
@@ -149,7 +149,7 @@ export default function RealizacjeClient({ slug }: { slug: string }) {
                 className="flex items-center cursor-pointer ml-2 px-2"
               >
                 <Image
-                  src={`${B}/logo.png`}
+                  src={`${B}/logo.webp`}
                   alt="AGA-MAX Wasilewscy"
                   width={130}
                   height={32}
@@ -239,8 +239,8 @@ export default function RealizacjeClient({ slug }: { slug: string }) {
              <ParallaxImage src={data.tallImage} alt="Detail" className="w-full aspect-video md:aspect-[21/9] rounded-[32px] bg-white/5 border border-white/10 shadow-2xl" />
              
              <div className="grid grid-cols-2 gap-6 md:gap-8">
-                <ParallaxImage src={`${B}/gallery_bg.png`} alt="More" className="w-full aspect-square rounded-[32px] bg-white/5 border border-white/10 shadow-xl" />
-                <ParallaxImage src={`${B}/hero.png`} alt="More" className="w-full aspect-square rounded-[32px] bg-white/5 border border-white/10 shadow-xl" />
+                <ParallaxImage src={`${B}/gallery_bg.webp`} alt="More" className="w-full aspect-square rounded-[32px] bg-white/5 border border-white/10 shadow-xl" />
+                <ParallaxImage src={`${B}/hero.webp`} alt="More" className="w-full aspect-square rounded-[32px] bg-white/5 border border-white/10 shadow-xl" />
              </div>
           </div>
         </div>
