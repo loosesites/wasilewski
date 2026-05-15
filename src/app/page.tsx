@@ -29,11 +29,7 @@ import Link from "next/link";
 
 const B = "/wasilewski";
 
-const REVIEWS = [
-  { name: "Marcin K.", car: "BMW M4 Competition", text: "Szybka i trafna diagnoza usterki, z którą inni nie mogli sobie poradzić. Pełen profesjonalizm!" },
-  { name: "Tomasz W.", car: "Porsche 911 Carrera", text: "Serwis olejowy i przegląd wykonany perfekcyjnie. Czuć, że auto jest w rękach pasjonatów mechaniki." },
-  { name: "Aleksandra M.", car: "Audi RS6 Avant", text: "Naprawa zawieszenia przywróciła autu dawną precyzję prowadzenia. Bardzo solidny warsztat." },
-];
+import REVIEWS from "../data/reviews.json";
 
 function Magnetic({ children }: { children: React.ReactElement }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -248,80 +244,7 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
   const [activePhoto, setActivePhoto] = useState(0);
   const thumbsRef = useRef<HTMLDivElement>(null);
 
-  const CARS = [
-    {
-      id: "bmw",
-      name: "BMW M4 Competition",
-      year: "2023",
-      tag: "NAPRAWA SILNIKA",
-      category: "Mechanika Silnikowa",
-      desc: "Kompleksowa naprawa układu wtryskowego oraz uszczelnienie silnika S58. Przywróciliśmy pełną moc i fabryczne parametry pracy jednostki napędowej.",
-      services: ["Diagnostyka komputerowa", "Wymiana wtryskiwaczy", "Uszczelnienie góry silnika", "Adaptacja sterownika"],
-      photos: [`${B}/hero.png`, `${B}/gallery_bg.png`, `${B}/gallery_ceramic.png`],
-      beforeImg: `${B}/gallery_ceramic.png`,
-      afterImg: `${B}/hero.png`,
-    },
-    {
-      id: "porsche",
-      name: "Porsche 911 GT3",
-      year: "2022",
-      tag: "ZAWIESZENIE TOROWE",
-      category: "Geometria i Zawieszenie",
-      desc: "Profesjonalne ustawienie geometrii kół w systemie 3D oraz wymiana wahaczy przedniej osi. Auto odzyskało perfekcyjną precyzję prowadzenia na torze i drogach publicznych.",
-      services: ["Geometria 3D", "Wymiana wahaczy", "Kalibracja PASM", "Przegląd układu kierowniczego"],
-      photos: [`${B}/gallery_bg.png`, `${B}/hero.png`, `${B}/about.png`],
-      beforeImg: `${B}/about.png`,
-      afterImg: `${B}/gallery_bg.png`,
-    },
-    {
-      id: "mercedes",
-      name: "Mercedes G-Class",
-      year: "2021",
-      tag: "SERWIS SKRZYNI",
-      category: "Naprawa Napędów",
-      desc: "Dynamiczna wymiana oleju w automatycznej skrzyni biegów 9G-Tronic oraz serwis mostów napędowych. Zapewniliśmy płynność zmiany przełożeń i trwałość napędu 4x4.",
-      services: ["Dynamiczna wymiana oleju", "Serwis skrzyń rozdzielczych", "Uszczelnienie mostów", "Diagnostyka elektroniki"],
-      photos: [`${B}/gallery_interior.png`, `${B}/gallery_bg.png`, `${B}/hero.png`],
-      beforeImg: `${B}/gallery_interior.png`,
-      afterImg: `${B}/gallery_interior.png`,
-    },
-    {
-      id: "audi",
-      name: "Audi RS6 Avant",
-      year: "2023",
-      tag: "UKŁAD HAMULCOWY",
-      category: "Serwis Hamulców",
-      desc: "Wymiana kompletu tarcz i klocków ceramicznych oraz regeneracja zacisków. Zastosowaliśmy najwyższej klasy komponenty, zapewniając maksymalną siłę hamowania.",
-      services: ["Wymiana tarcz i klocków", "Regeneracja zacisków", "Płyn hamulcowy premium", "Przewody w oplocie"],
-      photos: [`${B}/gallery_ceramic.png`, `${B}/gallery_interior.png`, `${B}/gallery_bg.png`],
-      beforeImg: `${B}/gallery_ceramic.png`,
-      afterImg: `${B}/gallery_interior.png`,
-    },
-    {
-      id: "lamborghini",
-      name: "Lamborghini Huracán",
-      year: "2022",
-      tag: "DIAGNOSTYKA MOCY",
-      category: "Tuning i Elektronika",
-      desc: "Zaawansowana diagnostyka układu paliwowego oraz optymalizacja oprogramowania sterującego silnikiem V10. Bezpieczny przyrost parametrów i lepsza reakcja na gaz.",
-      services: ["Hamownia drogowa", "Logowanie parametrów", "Indywidualny strojenie", "Usunięcie limiterów"],
-      photos: [`${B}/hero.png`, `${B}/gallery_bg.png`, `${B}/about.png`],
-      beforeImg: `${B}/about.png`,
-      afterImg: `${B}/hero.png`,
-    },
-    {
-      id: "tesla",
-      name: "Tesla Model S Plaid",
-      year: "2024",
-      tag: "SERWIS ELEKTRYKA",
-      category: "Serwis Aut EV",
-      desc: "Specjalistyczny przegląd układu chłodzenia baterii oraz diagnostyka systemów wysokonapięciowych. Zapewniamy profesjonalną obsługę najnowocześniejszych napędów elektrycznych.",
-      services: ["Diagnostyka HV", "Serwis chłodzenia baterii", "Aktualizacja systemów", "Przegląd zawieszenia pneum."],
-      photos: [`${B}/gallery_interior.png`, `${B}/hero.png`, `${B}/gallery_ceramic.png`],
-      beforeImg: `${B}/gallery_interior.png`,
-      afterImg: `${B}/gallery_ceramic.png`,
-    },
-  ];
+  import CARS from "../data/cars.json";
 
   const car = CARS[activeCar];
 
