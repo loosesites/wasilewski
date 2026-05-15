@@ -30,6 +30,7 @@ import Link from "next/link";
 const B = "/wasilewski";
 
 import REVIEWS from "../data/reviews.json";
+import CARS from "../data/cars.json";
 
 function Magnetic({ children }: { children: React.ReactElement }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -244,7 +245,6 @@ function InteractiveCarsGallery({ onContactClick }: { onContactClick?: () => voi
   const [activePhoto, setActivePhoto] = useState(0);
   const thumbsRef = useRef<HTMLDivElement>(null);
 
-  import CARS from "../data/cars.json";
 
   const car = CARS[activeCar];
 
